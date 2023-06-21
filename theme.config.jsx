@@ -111,7 +111,7 @@ export default {
   },
   useNextSeoProps: () => ({ titleTemplate: "Glean - %s" }),
   docsRepositoryBase:
-    "https://github.com/gleannyc/documentation/tree/carlos/next/",
+    "https://github.com/glean-io/documentation/tree/main/",
   darkMode: false,
   primaryHue: 38,
   sidebar: { defaultMenuCollapseLevel: 2, toggleButton: true },
