@@ -1,0 +1,75 @@
+import { Callout } from "nextra-theme-docs";
+
+# Data Modeling Best Practices
+
+The goal of modeling data is to accurately measure a workflow or process in your organization.
+If you are monitoring clinical trials patients, you might have a data model for
+If you are managing a call center, you may have a data model for calls.
+
+Since a Glean data model is based on a single underlying table, you should denormalize
+and join in as much relevant data as possible.
+
+Below are useful guidelines for how to think about and optimize your data models.
+
+## What does each row represent?
+
+You should start data modeling by asking yourself what each row in your data model will actually represents. This is the most important step of data modeling (and too-often overlooked!) - picking a bad entry point can cause maintenance headaches down the line. If you're modeling calls in a call center, maybe every row is going to represent a call.
+
+In data warehousing terms, this is often referred to as [the grain or granularity of a table](http://www.datamartist.com/data-granularity-avoid-going-against-the-grain).
+
+If it's hard to describe what each row represents, it's possible you're not picking a good concept to model and that exploring this model in Glean won't be very intuitive.
+
+<Callout type="info">
+  **Row count metric is required**— You can't remove the row count metric from a
+  data model in Glean (at least, not very easily). It's good practice to rename
+  the row count metric to describe what each row in the table represents (eg.
+  Calls). If each row really doesn't mean anything, you can rename in a way that
+  it won't accidentially get used " row count - dont use".
+</Callout>
+
+## Denormalize your Data
+
+Once you pick which domain you want to model, it's a good idea to pull in relevant information about that domain by denormalizing the data.
+
+If you're modeling calls in a call center, you might want to pull in information about each call center and pull in information about each employee. In practice, denormalizing data just means joining in other relevant tables and columns.
+
+If your data isn't already denormalized in your data warehouse, you can build your data model on top of a SQL query
+
+<Callout type="info">
+  **Isn't denormalizing inefficient?** Normalization seems like an efficient
+  process since it removes data duplication so you may be asking yourself why we
+  recommend that you reverse this process. Network and data processing would
+  seem to be better when you split out data so you don't have to scan and
+  retrieve unnecessary data. It turns out, it's not that important for modern
+  data warehouses because the data is stored by column. This means that in a
+  modern data warehouse: 1. Since data is stored by column - oftentimes data can
+  be compressed efficiently and the data duplication isn't as big of a deal
+  compared to if the data was stored by rows. 2. For each query, the database
+  will only process and scan data in the columns necessary for your query.
+</Callout>
+
+## Representing events versus entities
+
+The number of rows in a data model should grow over time. It's helpful to think of data models as representing events, like a call in a call center or a new patient being added to a clinical trial. This actually contradicts an example in the first section above where we proposed a data model for patients in a medical context. While patients might be a reasonable starting point, it might be more helpful to think of the data model as representing _new_ patients or new patient events.
+
+To summarize, it's easier to think of data models as representing events that happen over time, rather than entities like people, places, or things. This is not a hard and fast rule and there are definitely instances where it will be helpful to think about customers or patients in their own data models (see the section on pre-aggregating data below)
+
+## Dealing with one-to-many relationships
+
+The experienced data modeler should be able to deftly navigate one-to-many relationships (1) - this is where representing data as a flat, denormalized model can get tricky.
+
+<Callout type="info">
+  **What is a one to many relationship?** In a relational database, a
+  one-to-many relationship is when one record in a table can be connected to one
+  or more records in another table. For example a single customer could have one
+  or more orders in the orders table.
+</Callout>
+
+Let's say in our Call Center each call has a series of tags associated with it. Tags can have values like `customer support`, `international` vs. `domestic` etc. There can be many tags associated with each call. Users may want to see call statistics grouped by tag as an Attributes. While other self-service tools may allow for realtime joining, Glean intentionally forces you to define joins upfront in your denormalized table.
+
+If your tags are contained in an array type column, Glean should understand them automatically as an array attribute. Otherwise, it may make sense to have two data models: one for exploring call tags and one for exploring calls.
+
+<Callout>
+  **Next Steps**- If you're ready to begin building in Glean, learn how to [add
+  a Data Model](/data-modeling/add-data-model).
+</Callout>

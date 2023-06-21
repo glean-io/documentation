@@ -1,0 +1,190 @@
+import { Callout } from "nextra-theme-docs";
+
+# Retention curves
+
+[Retention curves](https://www.sequoiacap.com/article/retention) allow you to
+see how many users are still active at a given point in time and compare
+different cohorts of users to see how well your product retains engagement. This
+article doesn't dedicate too much time to how to analyze retention curves since
+there is plenty of content dedicated to this out there.
+
+The approach is very similar to the general approach to data modeling: you'll
+prepare a set of metrics that define the percent of users that are still active
+in a month and add attributes that help you understand the variation. See the
+article
+[Data Modeling Best Practices](/data-modeling/data-modeling-best-practices)
+
+For retention curves, it's oftentimes useful to add experiments as attributes:
+did you try something in the product to retain users more effectively? Maybe a
+new onboarding flow, a new user flow?
+
+<iframe
+  width="100%"
+  height="500px"
+  frameBorder={0}
+  src="https://demo.glean.io/app/sv/c5120fe8-b0a0-36e3-bc56-a795c081722e?viewMode=embed"
+/>
+
+For this walk-through, we're going to look at the user engagement on the tech
+news aggregation website Hacker News. The dataset is available on BigQuery's
+public datasets and is kept up to date.
+
+## Prepare curves in your data warehouse
+
+As with all tools you build in Glean, retention curves will be as powerful as
+the data model you produce for them. For large user tables, it probably makes
+sense to prepare this data in your data warehouse, but it's also possible to
+calculate retention curves on the fly using a SQL-based data model. See
+[Add Data Model](/data-modeling/add-data-model)
+
+To prepare our curves, we are going to track whether a user is active or not in
+any given month. So that all of our users are being compared fairly, we'll also
+track the number of months since a user signed up - this will be the x-axis of
+our retention curve.
+
+You should be targeting a data model that looks something like the following
+table:
+
+| userid          | user signup month | activity month    | months since signup | is_active |
+| --------------- | ----------------- | ----------------- | ------------------- | --------- |
+| carlos@glean    | August 1, 2020    | August 1, 2020    | 0                   | 1         |
+| carlos@glean    | August 1, 2020    | September 1, 2020 | 1                   | 1         |
+| carlos@glean    | August 1, 2020    | October 1, 2020   | 2                   | 0         |
+| carlos@glean    | August 1, 2020    | November 1, 2020  | 3                   | 0         |
+| nathaniel@glean | July 1, 2020      | July 1, 2020      | 0                   | 1         |
+| nathaniel@glean | July 1, 2020      | August 1, 2020    | 1                   | 1         |
+| nathaniel@glean | July 1, 2020      | September 1, 2020 | 2                   | 1         |
+| nathaniel@glean | July 1, 2020      | October 1, 2020   | 3                   | 1         |
+| nathaniel@glean | July 1, 2020      | November 1, 2020  | 4                   | 1         |
+
+For the Hacker News dataset the query looks something like this (using BigQuery
+syntax):
+
+```sql
+with all_months as (
+  select
+    distinct timestamp_trunc(timestamp, month) as month
+  from `bigquery-public-data.hacker_news.full`
+),
+active_months as (
+  select
+    distinct `by` as userid
+    , timestamp_trunc(timestamp, month) as month
+  from`bigquery-public-data.hacker_news.full`
+),
+users as (
+  select
+    `by` as userid
+    , min(timestamp_trunc(timestamp, month)) as first_month
+    , max(timestamp_trunc(timestamp, month)) as last_month
+  from `bigquery-public-data.hacker_news.full`
+  group BY userid
+)
+select
+  u.userid
+  , m.month
+  , first_month as cohort_month
+  , cast(first_month as string) as cohort_month_str
+  , date_diff(DATE(m.month), DATE(u.first_month), MONTH) as month_number
+-- could add cohort
+--  , experiment_cohort as experiment
+  , if(m.month <= u.last_month, 1.0, 0.0) as unbounded_active
+  , if(a.month IS NOT NULL, 1.0, 0.0) as active
+from users as u
+  cross join all_months as m
+  left join active_months as a
+    on a.userid = u.userid and a.month = m.month
+  where m.month >= u.first_month
+;
+```
+
+A few notes on the resulting columns:
+
+- **userid** - self-explanatory, this is string representing our user
+- **month** - this is a date representation of the month in which an activity
+  happens
+- **cohort_month** - this is the month a user joined the site
+- **cohort_month_str** - this is a bit of a workaround: you will cast your
+  cohort month to a string so you can use it as an attribute and cut by it in
+  Glean
+- **month_number** - this is the number of months since a user joined the
+  platform, this will be the x axis of our curve
+- **experiment** - this is a randomly assigned experiment for each user. Note
+  that in this column and for this model, each user can only be assigned to a
+  single experimental cohort.
+- **active** - either 1 or 0 for each user in a month. A value of 1 means the
+  user was active in that month and zero means inactive.
+- **unbounded_active** - either 1 or 0 for each user in a month. A value of 1
+  means that a user was either active in that month or in any month after. This
+  will help us answer the question "of users in this month, what percent of
+  users abandoned us and have not returned since"
+
+## Create the model in Glean
+
+1. From the data exploration page, click
+   [Add Data Model](/data-modeling/add-data-model)
+2. Either select your prepared retention table from your data warehouse or click
+   `SQL Query` and enter a SQL query similar to the one above as the basis for
+   your model. Click `Create Model`
+3. Set up your data model in Glean:
+
+   - Make sure that `month` is selected as your primary date, by selecting the
+     gear next to it.
+   - Add `cohort_month_str`, `month_number` as attributes along with any
+     experimental cohort attributes you prepared in your data.
+   - Add two columns as metrics:
+
+     - **Unbounded Active Retention** - is defined as the `average` of column
+       `unbounded_active`
+     - **Active Retention** - is defined as the `average` of column `active`
+     - **Active Users (Optional)** - if you want to create a retention pivot,
+       you should also add a metric for unique active users in a month:
+
+     ```sql
+     COUNT(DISTINCT IF(active = 1, userid, null))
+     ```
+
+4. Click `Publish`
+
+## Create retention curves
+
+<iframe
+  width="100%"
+  height="500px"
+  frameBorder={0}
+  src="https://demo.glean.io/app/sv/c5120fe8-b0a0-36e3-bc56-a795c081722e?viewMode=embed"
+/>
+
+1. Change the chart type to a `line`
+2. Select `month_number` as the x-axis variable
+3. Select `Unbounded Active Retention` as your metric
+4. Select some `cohort_month_str` as breakouts to see how different cohort
+   months retain users in your product. Alternatively, you can filter for a
+   specific cohort month and breakout by an experimental variable
+
+<Callout type="info">
+  Note that not breaking out (or filtering) by `cohort_month_str` has some
+  implications for your analysis. This is because not every cohort month has an
+  equal number of future months. To correct for this, it's possible to use a
+  Kaplan-Meier estimator which will be left as a separate exercise.
+</Callout>
+
+## Create retention table
+
+<iframe
+  width="100%"
+  height="500px"
+  frameBorder={0}
+  src="https://demo.glean.io/app/sv/07fdf78d-0f43-3320-b3dc-612a57fdfedc?viewMode=embed"
+/>
+
+1. Make sure you add the Active Users metric specified above.
+2. Select a `pivot table` as your visualization type from the chart dropdown on
+   the top left.
+3. Select `cohort` as your rows
+4. Select `month_number` as your columns
+5. Click into the `control` tab on the right-hand side and make sure you sort
+   rows by `cohort` descending and sort the columns by `month_number` ascending
+6. As the metric, select `Active Users` as the calculation, select
+   `Percentage of Row Max` and finally as the Color scale, select
+   `Percentage Color Scale`

@@ -1,0 +1,6 @@
+{
+  "cli": { "title": "Using the Glean CLI" },
+  "yaml-editor": { "title": "Using the YAML Editor" },
+  "GRNs": { "title": "GRNs" },
+  "config-schema": { "title": "Configuration Schemas" }
+}

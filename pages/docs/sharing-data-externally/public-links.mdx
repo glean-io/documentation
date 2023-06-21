@@ -1,0 +1,38 @@
+import { Callout } from "nextra-theme-docs";
+
+# Public Links
+
+Public links allow users to share their saved views, dashboards, and collections in Glean with others on the public internet. With a public link, someone can access a view-only version of the given resource without the need to log in to Glean.
+
+## Permissions
+
+Anyone with the `UPDATE_PUBLIC_SHARING` permission (those with the `Editor` or `Owner` [system role](/docs/project-management/users-and-permissions/#default-system-roles) by default) can turn on the public link for a resource.
+
+We ensure that those visiting a public link can neither make any edits to the underlying resource(s) nor can they view any data outside of
+the filters specified by your resource(s).
+
+## Turning on Public Links
+
+1. Open a saved view, dashboard, or collection in Glean.
+2. Click the `Share` dropdown at the top right corner and select the `Share as Link` option.
+3. In the modal that opens, click the toggle next to `Public Link` to turn it `ON`. The link that appears is now active for anyone on the web to visit.
+4. Copy that link and include it wherever you please.
+
+<Callout type="info">
+  Public links for collections include every resource at the top level of the
+  collection but no resources in sub-collections. To share a sub-collection, you
+  must create a separate public link for it.
+</Callout>
+
+## Turning off Public Links
+
+To turn off a public link, simply toggle `Public Link` to `OFF` in the `Share as Link` modal.
+
+Once you do this, users will no longer be able to load that public link. If you ever turn the public link back on for that resource,
+we reactivate the old link, so you don't need to worry about resending the link to everyone who already had it.
+
+<Callout type="info">
+  Public links are automatically turned off when a resource is trashed (and
+  reactivated if the resource is untrashed), but **not** when a resource is made
+  private.
+</Callout>
