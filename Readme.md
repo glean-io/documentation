@@ -1,3 +1,3 @@
 # Glean documentation
 
-User-facing documentation for Glean
+User-facing documentation for [Glean](https://glean.io)
