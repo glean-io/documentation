@@ -1,0 +1,24 @@
+{
+  "docs": {
+    "title": "Docs",
+    "type": "page"
+  },
+  "product-roadmap": {
+    "title": "Roadmap",
+    "type": "page"
+  },
+  "changelog": {
+    "title": "Changelog",
+    "type": "page"
+  },
+  "get-access": {
+    "title": "Get Access ↗",
+    "href": "https://glean.io/getAccess",
+    "type": "page"
+  },
+  "log-in": {
+    "title": "Log In ↗",
+    "href": "https://glean.io/app",
+    "type": "page"
+  }
+}

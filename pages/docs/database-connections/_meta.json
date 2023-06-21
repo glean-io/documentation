@@ -1,0 +1,9 @@
+{
+  "athena": { "title": "Athena (AWS)" },
+  "bigquery": { "title": "BigQuery (GCP)" },
+  "duckdb": { "title": "DuckDB" },
+  "mysql": { "title": "MySQL" },
+  "postgresql": { "title": "PostgreSQL" },
+  "snowflake": { "title": "" },
+  "_template": { "display": "hidden" }
+}

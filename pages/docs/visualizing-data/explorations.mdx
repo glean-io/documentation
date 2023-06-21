@@ -1,0 +1,35 @@
+import { Callout } from "nextra-theme-docs";
+
+# Explorations
+
+Saved Views and Data Models are often starting points for further exploration and analysis. Glean makes it safe and easy to take resources further and share what you've found with the `Explorations` feature.
+
+## Starting and resuming an exploration
+
+![](/visualizing_data/explore_exploring.jpg)
+
+Whenever you begin making changes to a resource in the `Explorer`, Glean will track your changes and give them unique URLs.
+
+Click the `X` in the `Exploring` chip to reset back to the resource's default view at any time. Glean will save your place for each resource for you to return to later.
+
+If you've explored a resource before, you will see an option to resume your last `Exploration` for that resource.
+
+![](/visualizing_data/explore_resume.jpg)
+
+## Sharing an exploration
+
+![](/visualizing_data/explore_share.jpg)
+
+In the `Explorer`, you can always click the `Exploring` chip to copy the URL for your current exploration to the clipboard. You can also simply copy the URL from the address bar of your browser.
+
+When someone else accesses your link, they will be brought to the resource with your `Exploration` applied. They will see a color header and the name of the person who shared their `Exploration`.
+
+![screenshot of glean when viewing another user's exploration](/visualizing_data/explore_view.jpg)
+
+<Callout type="warning">
+  While an `Exploration` link contains configurations such as
+  [Breakouts](/visualizing-data/Breakouts) and
+  [Filters](/visualizing-data/Filter), it does not freeze and preserve the
+  underlying data. If someone accesses an `Exploration` and the underlying data
+  has changed, they might not see what was intended.
+</Callout>

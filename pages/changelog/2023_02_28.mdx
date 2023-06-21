@@ -1,0 +1,60 @@
+# February 28th, 2023
+
+Hello friends of Glean!
+
+Since we last spoke, several of our team members celebrated their first ‘Gleanniversaries’ and have been busy building some awesome things for you all! We released changes to project homepages, starred resources and launched SSO among other features. 🚀
+
+## SSO is here! 🔒
+
+<img
+  src="/product_updates/230228_okta.png"
+  alt="Okta logo and Glean logo side by side"
+  style={{ maxWidth: "650px" }}
+/>
+
+You can now connect Glean to Okta, or any SAML or OIDC provider of your choice for a seamless login experience! With single sign-on (SSO) enabled, admin users in your identity provider can control which users or groups have access to Glean. Through SCIM, you can not only add and remove Glean users, but also manage their custom Glean roles directly in your identity provider. If you’re interested in setting this up for your organization, reach out to our team to learn more.
+
+---
+
+## Sandbox Demo Projects
+
+Sandbox demo projects have the full functionality of Glean with preloaded datasets for you and your team! These projects are a great place to train team members on Glean or try the product out without connecting your own data warehouse. We highly recommend using them to experiment with our DataOps Examples without disrupting your project! [Easily set up](/docs/project-management/demo-projects.md) a sandbox project today in a couple steps.
+
+---
+
+## Customize Your Glean Homepage
+
+<img
+  src="/product_updates/230228_homepage.gif"
+  alt="Animated gif showing a user customizing their homepage with some dashboards and a title to their project"
+  style={{ maxWidth: "650px" }}
+/>
+
+Ensure everyone in your company knows which resources to start with and why. You can now pin the most important resources for everyone at the top of your project homepage with a description to explain the context. We also support markdown to make it beautiful.✨ Additional details in our [docs here](/docs/data-ops/config-schema/homepage-launchpad).
+
+---
+
+## Improved DataOps Build Summaries
+
+<img
+  src="/product_updates/230228_dataopsbuild.png"
+  alt="A screenshot of a terminal after a 'glean preview' has been run as a command.  An organized list of added, updated and unchanged resources are shown."
+  style={{ maxWidth: "650px" }}
+/>
+
+A much-requested feature! Glean now indicates whether your resources are “changed” or “unchanged” when creating Preview or Deploy builds. During each build, we compare the configuration of each resource with the version that is currently deployed to your project and indicate whether there are any differences. You can use this to confirm that your build is working as intended, or to detect unwanted drift between your project and your configurations in Git. This is now live for both the Glean web UI and the CLI.
+
+---
+
+## DataOps Live!
+
+Join our VP of Technology, Dan Eisenberg, for a live demo of [Glean’s DataOps](/docs/data-ops) on March 22nd from 1-2 pm ET. Dan will do a deep dive on ‘Dashboards as Code’ and our recent improvements to the development lifecycle. [RSVP here](https://app.livestorm.co/glean-io/glean-dataops-live?s=52e05471-02d9-4ba3-9263-15c4ff53ee75) and feel free to send over questions in advance.
+
+---
+
+## 📚Smaller Product Updates, Blog Posts & More
+
+- **Reorder Starred Resources** - Your favorite resources in Glean are now displayed in the left hand panel. Easily drag and drop them to adjust order. 🌟
+- **SuperDataScience Podcast** - [hear from](https://www.superdatascience.com/podcast/efficiently-gleaning-insights-from-vast-data-warehouses) our founder, Carlos Aguilar, to learn more about his background and inspiration to build Glean!
+- **DuckDB** - There’s a lot of hype around DuckDB and for good reason! [Read our](https://glean.io/blog-posts/using-duckdb-for-not-so-big-data-in-glean) take about the benefits it has for the data ecosystem (and Glean).
+- **Glean IRL** - We’ll be at the DataCouncil conference in Austin, TX. Check out the awesome line up for the [Analytics track](https://www.datacouncil.ai/austin), hosted by Carlos!
