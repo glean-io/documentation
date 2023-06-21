@@ -3,3 +3,4 @@
 node_modules/
 dist/
 packages/nextra-theme-*/style.css
+.env.local
