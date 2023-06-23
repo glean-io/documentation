@@ -74,12 +74,12 @@ function analytics() {
       first.parentNode.insertBefore(script, first);
       analytics._loadOptions = options;
     };
-    analytics._writeKey = "{{ process.env.SEGMENT_KEY }}";
+    analytics._writeKey = process.env.SEGMENT_KEY;
     // Add a version to keep track of what's in the wild.
     analytics.SNIPPET_VERSION = "4.15.2";
     // Load Analytics.js with your key, which will automatically
     // load the tools you've enabled for your account. Boosh!
-    analytics.load("{{ process.env.SEGMENT_KEY }}");
+    analytics.load(process.env.SEGMENT_KEY);
     // Make the first page call to load the integrations. If
     // you'd like to manually name or tag the page, edit or
     // move this call however you'd like.

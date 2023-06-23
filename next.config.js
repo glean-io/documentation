@@ -6,6 +6,9 @@ const nextraDocsConfig = {
 };
 
 const nextJsConfig = {
+  env: {
+    SEGMENT_KEY: process.env.SEGMENT_KEY
+  },
   redirects: async () => [
     { source: "/", destination: "/docs/getting-started", permanent: false },
     { source: "/docs", destination: "/docs/getting-started", permanent: false },
