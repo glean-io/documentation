@@ -32,7 +32,9 @@ const nextJsConfig = {
     { source: "/docs/data-ops/config-schema/Data-Model", destination: "/docs/data-ops/config-schema/data-models", permanent: false },
     { source: "/docs/data-ops/config-schema/Saved-View", destination: "/docs/data-ops/config-schema/saved-views", permanent: false },
     { source: "/docs/data-ops/config-schema/Dashboard", destination: "/docs/data-ops/config-schema/dashboards", permanent: false },
-    { source: "/docs/data-ops/config-schema/Color-Palette", destination: "/docs/data-ops/config-schema/color-palettes", permanent: false }
+    { source: "/docs/data-ops/config-schema/Color-Palette", destination: "/docs/data-ops/config-schema/color-palettes", permanent: false },
+    { source: "/product-roadmap/product-roadmap", destination: "/docs/product-roadmap", permanent: false },
+    { source: "/guides/quickstart", destination: "/docs/getting-started/quick-start", permanent: false }
   ],
 };
 
