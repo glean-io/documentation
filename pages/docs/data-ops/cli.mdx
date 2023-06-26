@@ -143,10 +143,9 @@ jobs:
 
 If you provide a GRN as an argument, `glean pull` will restrict itself to only the specified resource and all resources it depends on. For example, `glean pull sv:the-sv-id` will retrieve the resource configuration for the specified saved view, plus any model(s) it depends on.
 
-<aside>
-⚠️ When developing locally, you are not required to specify GRNs in Glean resource configuration files. However, when running `glean deploy`, GRNs are assigned based on the relative path from the working directory to the resource configuration file. Subsequent uses of `glean pull` should therefore be run from the same working directory.
-
-</aside>
+<Callout type="warning">
+  When developing locally, you are not required to specify GRNs in Glean resource configuration files. However, when running `glean deploy`, GRNs are assigned based on the relative path from the working directory to the resource configuration file. Subsequent uses of `glean pull` should therefore be run from the same working directory.
+</Callout>
 
 Note that `glean pull` is a potentially destructive operation that will change files in your working directory. Make sure your `git status` is clean (no uncommitted changes in the working directory) before pulling resources.
 
