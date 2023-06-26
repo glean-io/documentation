@@ -1,0 +1,35 @@
+import { Callout } from "nextra-theme-docs";
+
+# ClickHouse
+
+<Callout type="info">
+  Glean's ClickHouse integration is currently in Beta. Let us know if you
+  encounter any issues!
+</Callout>
+
+<Callout type="info">
+  Glean models based on ClickHouse data tables do not yet support Array-type
+  attributes.
+</Callout>
+
+ClickHouse is an open-source column-oriented database management system (DBMS) optimized for online analytical processing (OLAP). It's designed to enable fast, real-time data analysis. ClickHouse achieves its speed and efficiency by employing column-based storage, vectorized query execution, and a range of other data processing optimizations.
+
+You might want to use ClickHouse in scenarios that involve querying and processing large volumes of data. This could include analyzing logs, performing real-time analytical processing, processing time-series data, and running full-text searches, among other uses. It is often used in cases where real-time data analysis is critical.
+
+If you have relatively small data or are very early, using something lightweight like Postgres or uploading csvs or parquet files to our DuckDB integration could also be good options.
+
+### How to get set up:
+
+1. Set up a ClickHouse database, either by hosting it on your own infrastructure or signing up for [ClickHouse Cloud](https://clickhouse.com/).
+2. Set up a username and password for usage by Glean.
+3. In Glean, go to your [project settings](https://glean.io/app/p/settings#database_connections) page from the project dropdown and click `+ New Database Connection`
+4. Change the datatabse type to "ClickHouse" and fill out the connection settings as described below.
+
+### Settings
+
+- **Connection Name:** A nickname for your connection. Not used to connect to your database.
+- **Host:** the address of your Clickhouse database
+- **Port:** the port used for secure native connections to your ClickHouse database. This is usually `9440`.
+- **Username:** the username
+- **Password:** the password
+- **Database:** the name of the database to read from
