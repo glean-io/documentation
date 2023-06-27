@@ -125,9 +125,9 @@ models:
       # ... your dbt columns
 ```
 
-`source` has the same options as the corresponding field of [Glean data models](./config-schema/Data-Model.md). Unless otherwise specified, Glean automatically infers defaults for the source `physicalName` and `schema`.
+`source` has the same options as the corresponding field of [Glean data models](./config-schema/data-models.mdx). Unless otherwise specified, Glean automatically infers defaults for the source `physicalName` and `schema`.
 
-You can then use dbt to produce a [Manifest JSON file](https://docs.getdbt.com/reference/artifacts/manifest-json){:target="_blank"}, which can be included with any Glean DataOps build (or preview):
+You can then use dbt to produce a [Manifest JSON file](https://docs.getdbt.com/reference/artifacts/manifest-json), which can be included with any Glean DataOps build (or preview):
 
 ```bash
 $ glean preview --dbt-manifest=./target/manifest.json
@@ -164,9 +164,8 @@ models:
             sql: COUNT(DISTINCT customer_id) / COUNT(DISTINCT create_at)
 ```
 
-Glean configuration in your dbt schema file has access to the same [templating and macros](https://docs.getdbt.com/docs/build/jinja-macros){:target="_blank"} as your dbt configuration. You could, for example, configure the Glean data connection based on your dbt target:
+Glean configuration in your dbt schema file has access to the same [templating and macros](https://docs.getdbt.com/docs/build/jinja-macros) as your dbt configuration. You could, for example, configure the Glean data connection based on your dbt target:
 
-{% raw %}
 ```yaml
 models:
   - # ... dbt model configuration 
@@ -178,7 +177,6 @@ models:
           # configure the source based on the dbt target
           connectionName: "{{ target.database }}"
 ```
-{% endraw %}
 
 Imported dbt models are exclusively controlled by DataOps and cannot be saved from the web UI, though you are still free to prototype and experiment with dbt models in the Glean model editor.
 
