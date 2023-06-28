@@ -1,0 +1,36 @@
+import { Callout } from "nextra-theme-docs";
+
+# Description Syncing
+
+If you've added descriptions to your columns via column comments/descriptions or
+DBT `persist-docs`, Glean will automatically import those descriptions when you
+create or update a Data Model.
+
+In addition, if the comments/descriptions in your table change, you can import
+the latest values using the "Import Descriptions" feature in the Model Builder.
+
+## Example
+
+For example, if you have a BigQuery table with a column that has a description:
+
+<img
+  src="/description_syncing/bigquery-example-column-description.png"
+  alt="BigQuery table with column description."
+  style={{ padding: "20px" }}
+/>
+
+Glean will automatically import that description when you create a Data Model for that table:
+
+<img
+  src="/description_syncing/glean-attribute-card-with-description.png"
+  alt="Glean automatically imports the description."
+  style={{ padding: "20px 0" }}
+/>
+
+In addition, you can import descriptions explicitly using the Import Descriptions feature:
+
+<img
+  src="/description_syncing/glean-attribute-import-modal.png"
+  alt="Glean import description feature."
+  style={{ padding: "20px" }}
+/>
