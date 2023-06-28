@@ -139,9 +139,9 @@ jobs:
 
 ## Glean Pull
 
-`glean pull` is a command-line utility for moving resources from the web UI into DataOps. When you invoke `glean pull` with no arguments, it will fetch all resources from your glean project and save their configurations to your working directory. If you already have local files that correspond to resources in Glean, they will be overwritten.
+`glean pull` is a command-line utility for moving resources from the web UI into DataOps or pulling down changes. When you invoke `glean pull` with no arguments, it will fetch all resources from your Glean project and save their configurations to your working directory. If you already have local files that correspond to resources in Glean, they will be overwritten.
 
-If you provide a GRN as an argument, `glean pull` will restrict itself to only the specified resource and all resources it depends on. For example, `glean pull sv:the-sv-id` will retrieve the resource configuration for the specified saved view, plus any model(s) it depends on.
+If you provide a [GRN](./grns.mdx) as an argument, `glean pull` will restrict itself to only the specified resource and all resources it depends on. For example, `glean pull sv:the-sv-id` will retrieve the resource configuration for the specified saved view, plus any model(s) it depends on.
 
 <Callout type="warning">
   When developing locally, you are not required to specify GRNs in Glean resource configuration files. However, when running `glean deploy`, GRNs are assigned based on the relative path from the working directory to the resource configuration file. Subsequent uses of `glean pull` should therefore be run from the same working directory.
