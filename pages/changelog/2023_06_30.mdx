@@ -2,60 +2,75 @@
 
 Hello friends of Glean -
 
+Happy Summer! Thanks to all of the NYC folks who came out to our happy hour. As we wrap up the first half of the year, we’re excited that some major infrastructure improvements are translating to long-awaited features in our charting library!
+
+As always, check out our [public roadmap](/docs.glean.io/product-roadmap) (on our new docs site!) for some exciting analytics and collaboration features we have coming up over the rest of the summer. Have a great holiday weekend and we’ll see you in a month!
+
 ...
 
 \- Carlos
 
-## section 1
+## Bar + Line Charts… and more!
 
 <img
-  src="/product_updates/230530_refreshedcontrolpanel.gif"
-  alt="Animation of user navigating between controls, documentation and code editor"
+  src="/product_updates/230630_multiple_y.png"
+  alt="User viewing bar and line chart"
   style={{ maxWidth: "650px" }}
 />
 
-We’ve redesigned the controls for building advanced visualizations in Glean!
+You’re now able to configure different mark types for each metric in Glean! Choose from bars, areas, and lines to layer on top of each other in the same chart. Mixing mark types can help easily visually distinguish different types of metrics. For example, you can use bars for metrics that represent quantities, and lines on the same chart to show trends over time.
 
-Not only did the panel get a fresh coat of paint, but all of the controls are now organized for more advanced chart options. You can easily reconfigure charts, add documentation and jump into the code editor all from one place.
+There’s more! You can also display metrics on different axes and scales. With this feature, you can easily compare different metrics by adding a secondary y-axis into your views. This is particularly valuable when dealing with datasets that have significantly different ranges or units of measurement.
+
+You can customize each y-axis by adjusting their scales and ranges individually in the lefthand control panel. Combine these two features for highly customized, powerful charts. 
 
 ---
 
-## section 2
+## Documentation Synced from dbt and your Warehouse
 
 <img
-  src="/product_updates/230530_dashboardexplorationlinks.png"
-  alt="User hovering over a chip component saying exploring"
+  src="/product_updates/230630_description_syncing.png"
+  alt="User viewing a pop up saying import descriptions"
   style={{ maxWidth: "650px" }}
 />
 
-Section 3 content
+Description syncing is going to make your life so much easier! If you’ve already written your docs in dbt or directly in Snowflake or Redshift, we’ll take care of the rest. 
 
-[Explore Links](/docs/visualizing-data/explorations/) now work the same across Dashboards, Saved Views and Data Models.
+Glean will automatically import those descriptions when you create a Data Model or add new Attributes to it. You’ll always be able to keep your descriptions up to date with the Import Descriptions feature when the descriptions in your table change. [Start syncing today!](/docs.glean.io/docs/data-modeling/description-syncing) 
 
 ---
 
-## section 3
+## Filter and Group Array Values
+
+Say hello to [array attributes!](/docs.glean.io/docs/visualizing-data/attribute-tray#array-attributes) Glean now natively handles analyzing array types from a model. You can filter and group array elements while preserving your original metrics, attributes and calculations.
+
+Let’s say you have a Glean model for marketing campaigns. Each campaign has multiple ‘tags’ that you wanted to analyze: (eg. ‘drip campaign 2’ and ‘enterprise customer’). Previously you’d have to create a new model to analyze the tags instead of being able to analyze them with your original campaigns model. Array attributes let you analyze all your campaign metrics consistently across the multiple tags. So you can view performance for your ‘enterprise customers’ compared to your ‘drip campaign 2,’ even though they are overlapping.
+
+---
+
+## Improved DataOps Workflow with Glean Pull 
 
 <img
-  src="/product_updates/230530_publiclinksharing.png"
-  alt="Illustration of UI modal with share options"
+  src="/product_updates/230630_glean_pull.png"
+  alt="User in terminal with Glean Pull command"
   style={{ maxWidth: "650px" }}
 />
 
-... content
+Our team is continuing to invest in [DataOps](/docs.glean.io/docs/data-ops) so you can easily manage all of your Glean resources in code.  
+
+The latest release, [Glean Pull](/docs.glean.io/docs/data-ops/cli#glean-pull), is a command-line utility to create and update DataOps configs from web-based resources. Use the Glean web interface to collaboratively improve your data models and visualizations, then use Glean Pull to keep your DataOps synced.
 
 ---
 
 ## 📚 Other Updates, Blog Posts & More
 
-- **ICYMI**: Relative Metric Comparisons - Level up your next dashboard and easily communicate [key changes to your metrics](/docs/dashboards/metrics/#relative-metrics). Choose if you want to display sparklines and/or comparison text on your metrics.
-- **Custom Start of Week Configuration** - we’ve started rolling out more [advanced time-based configurations](/docs/project-management/datetime-settings/). You can now configure a custom start of week so reporting can start on either Monday or Sunday.
-- **Latest from the Blog** - A [guide](https://glean.io/blog-posts/five-signs-its-time-to-adopt-a-data-visualization-tool) to help you determine if it’s time to adopt a BI tool and some thoughts on why you should consider [embracing denormalized tables](https://glean.io/blog-posts/why-i-stopped-worrying-and-learned-to-love-denormalized-tables).
-- **NYC Folks** 🗽 - Join us on Thursday, June 22nd for a [happy hour](https://lu.ma/gleanhappyhour) at our office! Come hang out with our team and great people in the data/tech community from 6-8pm.
+- **Clickhouse + GLean** - Our latest integration has arrived! Glean now supports Clickhouse as a data source, [check out the details](/docs.glean.io/docs/database-connections/clickhouse) and get set up today. 
+- **Happy Pride!** - Check out our custom 🌈 palette and explore a visualization of the progress made across the world in countries officially recognizing pride events [here.](https://glean.io/public/dsb/gR3tZHI3pLr-A50E) 
+- **SQL Editor Improvements** - You can now run a partial highlighted query from the SQL editor by highlighting and cmd + enter!
 
 ---
 
-👀 Hoping to see something else on our feature release list? Check out our [Product Roadmap](/product-roadmap/product-roadmap/) and let us know what we’re missing.
+👀 Hoping to see something else on our feature release list? Check out our [Product Roadmap](/docs.glean.io/product-roadmap) and let us know what we’re missing.
 
 You can drop us a [note](mailto:support@glean.io?subject=null&body=null) or ping us on Slack with your💡ideas, 🗣 feedback, or 🙋questions. We look forward to👂hearing from you!
 
