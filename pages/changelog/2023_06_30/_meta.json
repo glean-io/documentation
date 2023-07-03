@@ -14,5 +14,9 @@
   "pull": {
     "title": "⬇️  Glean Pull",
     "href": "/changelog/2023_06_30#improved-dataops-workflow-with-glean-pull"
+  },
+  "more": {
+    "title": "more",
+    "href": "/changelog/2023_06_30#-other-updates-blog-posts--more"
   }
 }
