@@ -1,0 +1,18 @@
+{
+  "bars": {
+    "title": "🧩 Transpose Tables",
+    "href": "/changelog/2023_05_30#-other-updates-blog-posts--more"
+  },
+  "docs": {
+    "title": "🃏 Inline Documentation",
+    "href": "/changelog/2023_04_20#resource-descriptions"
+  },
+  "array": {
+    "title": "🔒 Controlled By DataOps",
+    "href": "/changelog/2023_04_20#resource-descriptions"
+  },
+  "more": {
+    "title": "more",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  }
+}

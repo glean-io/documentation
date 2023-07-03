@@ -1,38 +1,74 @@
 {
   "2023_06_30": {
-    "title": "June 2023"
+    "title": "June 2023",
+    "theme": {
+      "pagination": false
+    }
   },
   "2023_05_30": {
-    "title": "May 2023"
+    "title": "May 2023",
+    "theme": {
+      "pagination": false
+    }
   },
   "2023_04_20": {
-    "title": "April 2023"
+    "title": "April 2023",
+    "theme": {
+      "pagination": false
+    }
   },
   "2023_03_31": {
-    "title": "March 2023"
+    "title": "March 2023",
+    "theme": {
+      "pagination": false
+    }
   },
   "2023_02_28": {
-    "title": "February 2023"
+    "title": "February 2023",
+    "theme": {
+      "pagination": false
+    }
   },
   "2023_01_26": {
-    "title": "January 2023"
+    "title": "January 2023",
+    "theme": {
+      "pagination": false
+    }
   },
   "2022_12_27": {
-    "title": "December 2022"
+    "title": "December 2022",
+    "theme": {
+      "pagination": false
+    }
   },
   "2022_11_21": {
-    "title": "November 2022"
+    "title": "November 2022",
+    "theme": {
+      "pagination": false
+    }
   },
   "2022_10_17": {
-    "title": "October 2022"
+    "title": "October 2022",
+    "theme": {
+      "pagination": false
+    }
   },
   "2022_09_19": {
-    "title": "September 2022"
+    "title": "September 2022",
+    "theme": {
+      "pagination": false
+    }
   },
   "2022_08_04": {
-    "title": "August 2022"
+    "title": "August 2022",
+    "theme": {
+      "pagination": false
+    }
   },
   "2022_06_20": {
-    "title": "June 2022"
+    "title": "June 2022",
+    "theme": {
+      "pagination": false
+    }
   }
 }

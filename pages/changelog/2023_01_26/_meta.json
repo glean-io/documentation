@@ -1,0 +1,22 @@
+{
+  "csv": {
+    "title": "🦆 Upload CSVs/ DuckDB",
+    "href": "/changelog/2023_01_26#upload-csvs-into-glean"
+  },
+  "slack": {
+    "title": "Slack 🤝 Glean",
+    "href": "/changelog/2023_01_26#slack--glean"
+  },
+  "public": {
+    "title": "📢 Public Demo Site",
+    "href": "/changelog/2023_01_26#beta-yaml-editor"
+  },
+  "yaml": {
+    "title": "🎚️ Inline Code Editor",
+    "href": "/changelog/2023_01_26#beta-yaml-editor"
+  },
+  "more": {
+    "title": "more",
+    "href": "/changelog/2023_01_26#beta-yaml-editor"
+  }
+}
