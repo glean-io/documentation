@@ -1,0 +1,67 @@
+import Iframe from "/components/Iframe";
+
+In this documentation, we provide an overview of various chart types available in Glean. These charts help users to visualize and analyze data more effectively. The chart types we will discuss are:
+
+- Cartesians
+  - Area Chart
+  - Bar Chart
+  - Horizontal Bar Chart
+  - Line Chart
+- Tables
+  - Pivot Table
+  - Table
+  - Source Data Table
+
+## Bar, Area, Line Charts
+
+<Iframe src="https://demo.glean.io/app/sv/p2vCI-1xB3a8ATHV?viewMode=embed" />
+
+Bar charts represent data with rectangular bars. The height of the bars is proportional to the metric values they represent. Bar charts are a good default for a single metric time series . They clearly communicate granularity
+
+Area charts are similar to line charts but fill the area between the line and the x-axis. These charts are useful for showing the magnitude of a trend over time and for comparing different categories.
+
+Line charts represent data points connected by a line. They are useful for displaying trends and changes over time.
+
+markdown
+Copy code
+Example: Area Chart
+area chart
+
+## Horizontal Bar Chart
+
+Horizontal bar charts are like bar charts, but the bars are horizontal rather than vertical. They work more like tables and do not limit the number of bars. These charts are useful for comparing data across categories, especially when there are many categories or long labels.
+
+markdown
+Copy code
+Example: Horizontal Bar Chart
+horizontal bar chart
+
+## Pivot Table
+
+Pivot tables allow you to break out columns and summarize data. They enable users to reorganize, filter, and group data, making it easier to identify patterns and trends.
+
+markdown
+Copy code
+Example: Pivot Table
+Category Year Sales
+Electronics 2020 30000
+Electronics 2021 32000
+Home & Garden 2020 25000
+Home & Garden 2021 27000
+
+## Table
+
+Tables display data in rows and columns, allowing for multiple metrics. They are useful for presenting detailed information and facilitating comparisons between different data points.
+
+markdown
+Copy code
+Example: Table
+Category Year Sales Profit
+Electronics 2020 30000 5000
+Electronics 2021 32000 5500
+Home & Garden 2020 25000 4000
+Home & Garden 2021 27000 4500
+
+## Source Data Table
+
+Source data tables show the underlying data from your table. They provide raw data that can be used for further analysis or exported to other tools.
