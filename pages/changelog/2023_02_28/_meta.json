@@ -1,0 +1,22 @@
+{
+  "sso": {
+    "title": "🔐 SSO",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  },
+  "demo": {
+    "title": "🧪 Sandobox Demo Projects",
+    "href": ""
+  },
+  "homepage": {
+    "title": "📰 Custom Homepage",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  },
+  "dataopsbuild": {
+    "title": "🔨 Improved DataOps Builds",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  },
+  "more": {
+    "title": "more",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  }
+}

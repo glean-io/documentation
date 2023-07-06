@@ -1,0 +1,18 @@
+{
+  "controls": {
+    "title": "🎛️ New Control Panel",
+    "href": "/changelog/2023_05_30#refreshed-control-panel"
+  },
+  "dash_explore": {
+    "title": "🔗 Dashboard Explorations",
+    "href": "/changelog/2023_05_30#dashboard-exploration-links"
+  },
+  "public": {
+    "title": "🌍 Public Sharing",
+    "href": "/changelog/2023_05_30#public-link-sharing"
+  },
+  "more": {
+    "title": "more",
+    "href": "/changelog/2023_05_30#-other-updates-blog-posts--more"
+  }
+}

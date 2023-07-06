@@ -1,0 +1,22 @@
+{
+  "metrics": {
+    "title": "📜 Metric Tiles",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  },
+  "breakouts": {
+    "title": "💫  Dynamic Breakouts",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  },
+  "search": {
+    "title": "🐇 Deep Search CMD+K",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  },
+  "dataops": {
+    "title": "📺 DataOps Live",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  },
+  "more": {
+    "title": "more",
+    "href": "/changelog/2023_04_20#-smaller-product-updates-blog-posts--more"
+  }
+}
