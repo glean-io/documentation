@@ -23,7 +23,7 @@ models:
       # ... your dbt columns
 ```
 
-`source` has the same options as the corresponding field of [Glean data models](./config-schema/data-models.mdx). Unless otherwise specified, Glean automatically infers defaults for the source `physicalName` and `schema`.
+`source` has the same options as the corresponding field of [Glean data models](./config-schema/data-models.mdx). Unless otherwise specified, Glean automatically infers defaults for the source `physicalName` and `schema`. If no `connectionName` or `connectionId` is specified, Glean will try to use a connection whose name is the same as the dbt target database (e.g. `"bigquery"` or `"snowflake"`).
 
 You can then use dbt to produce a [Manifest JSON file](https://docs.getdbt.com/reference/artifacts/manifest-json), which can be included with any Glean DataOps build (or preview):
 
