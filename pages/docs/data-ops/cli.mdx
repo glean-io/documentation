@@ -102,84 +102,6 @@ $ DATABASE_CONNECTION_NAME=dev glean preview
 
 Environment variable substitution is not yet supported for Builds that are triggered via a git revision.
 
-## Integration with dbt
-
-Glean can import models directly from dbt. This is useful for incorporating Glean into existing DataOps workflows, allowing you to make changes to your dbt schema while identifying issues in downstream visualizations and dashboards.
-
-You must add the following fields to the `meta` key of each dbt model you want imported to Glean:
-
-```yaml
-# schema.yml
-
-version: 2
-
-models:
-  - # ... dbt model configuration 
-    meta:
-      glean:
-        glean: "1.0" # Glean dbt integration version
-        name: # Glean model name
-        source:
-          connectionName: # which Glean data connection to use
-    columns:
-      # ... your dbt columns
-```
-
-`source` has the same options as the corresponding field of [Glean data models](./config-schema/data-models.mdx). Unless otherwise specified, Glean automatically infers defaults for the source `physicalName` and `schema`.
-
-You can then use dbt to produce a [Manifest JSON file](https://docs.getdbt.com/reference/artifacts/manifest-json), which can be included with any Glean DataOps build (or preview):
-
-```bash
-$ glean preview --dbt-manifest=./target/manifest.json
-```
-
-Glean will include each dbt column as an attribute in the corresponding Glean model. You can also add additional fields to the dbt columns to take advantage of Glean's more advanced modeling features:
-
-```yaml
-    # ... as above
-    columns:
-      - name: my_dbt_attribute
-        documentation: this is a dbt attribute
-        tests:
-          - unique
-          - not_null
-        # add additional metadata to this column
-        meta:
-          glean:
-            primaryKey: true
-```
-
-To add Glean metrics (or other attributes not present in the dbt model) to the imported model, you can add a `cols` field to the dbt model's `meta.glean` configuration:
-
-```yaml
-models:
-  - # ... dbt schema configuration, as above
-    meta:
-      glean:
-        # ... as above
-        cols:
-          - id: daily_active_users
-            type: metric
-            name: Daily Active Users
-            sql: COUNT(DISTINCT customer_id) / COUNT(DISTINCT create_at)
-```
-
-Glean configuration in your dbt schema file has access to the same [templating and macros](https://docs.getdbt.com/docs/build/jinja-macros) as your dbt configuration. You could, for example, configure the Glean data connection based on your dbt target:
-
-```yaml
-models:
-  - # ... dbt model configuration 
-    meta:
-      glean:
-        glean: "1.0"
-        name: "customers"
-        source:
-          # configure the source based on the dbt target
-          connectionName: "{{ target.database }}"
-```
-
-Imported dbt models are exclusively controlled by DataOps and cannot be saved from the web UI, though you are still free to prototype and experiment with dbt models in the Glean model editor.
-
 ## Recommended workflows
 
 The CLI allows you to integrate Glean into your existing development and deployment process. As an example, here is a typical workflow that we use when making changes to Glean resources or upstream data:
@@ -228,3 +150,7 @@ If you provide a [GRN](./grns.mdx) as an argument, `glean pull` will restrict it
 Note that `glean pull` is a potentially destructive operation that will change files in your working directory. Make sure your `git status` is clean (no uncommitted changes in the working directory) before pulling resources.
 
 `glean pull` will not remove configuration files when the corresponding resource is deleted from the web UI.
+
+## dbt Utility
+
+`glean preview` and `glean deploy` can optionally accept a flag, `--dbt`, which runs `dbt parse` and then uses the resulting manifest for the corresponding Glean build. See the [dbt integration documentation](./dbt.mdx) for more information about the Glean dbt integration.
