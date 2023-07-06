@@ -10,17 +10,17 @@ If you're starting off with a copy of your application database, it's likely you
 
 Long term, we'd recommend eventually moving your analytics data to a modern data warehouse (like BigQuery or Snowflake) to get the most out of Glean.
 
-### How to get setup
+### How to get set up
 
 1. If you're using MySQL because that's what your application's backend is based on, make sure you're on a read-replica so your analytics queries don't bog down your application database.
-2. [Create a read-only user for Glean to use](https://dev.mysql.com/doc/refman/8.0/en/create-user.html) and grant it the appropriate permissions
-3. Go to your [Glean settings](https://glean.io/app/p/settings#database_connections) page
-4. Click `+ New Database Connection` and fill out the fields below
+2. [Create a read-only user for Glean to use](https://dev.mysql.com/doc/refman/8.0/en/create-user.html) and grant it the appropriate permissions.
+3. Go to your [Glean settings](https://glean.io/app/p/settings#database_connections) page.
+4. Click `+ New Database Connection` and fill out the fields below.
 
 ### Settings
 
 - **Connection Name:** A nickname for your connection. Not used to connect to your database.
-- **Host:** the address of your MySQL database
-- **Username:** the username
-- **Password:** the password
+- **Host:** The address of your MySQL database.
+- **Username:** The username.
+- **Password:** The password.
 - **Database:** (_optional_) Specify a schema to limit which tables are available. Otherwise, Glean will make all accessible schemas and tables available
