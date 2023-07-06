@@ -7,7 +7,7 @@ blank to allow viewers to specify the filter only when they wish to.
 If there are specific charts or metrics that you would like the filters to ignore,
 you can check the "Ignore Dashboard Filters" setting in their configuration menu.
 
-## Editing Filters
+## Editing filters
 
 Filters can be added to the dashboard globally or to any section once there are
 charts or metrics which can be filtered. Click the `+` button then select the
@@ -18,21 +18,21 @@ You can click one a specific filter to edit its value. When editing a dashboard,
 any value set here will become the default value for the filter when viewers
 load the dashboard.
 
-## Filter Hierarchy
+## Filter hierarchy
 
 Filters exist at three levels. When filters from different levels overlap,
 they are prioritized as such:
 
-1. Section Filters
-2. Global Filters
-3. Saved View / Metric Filters
+1. Section filters
+2. Global filters
+3. Saved View / Metric filters
 
-![Filter Hierarchy](/dashboards/filter-hierarchy.png)
+![Filter hierarchy](/dashboards/filter-hierarchy.png)
 
 Note that filter rules do not combine together - a more permissive filter will
 take precedence and override less permissive ones.
 
-## Filter Synchronization
+## Filter synchronization
 
 Dashboard filters are automatically synchronized based on the underlying column name of your attributes. For example, if you have two data models, each with an attribute based on a `customer_id` field, you only need to
 add one filter to the dashboard, and it will filter both data
