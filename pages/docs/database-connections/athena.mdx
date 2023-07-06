@@ -49,9 +49,9 @@ Glean's caching. Amazon has a few good articles on
 2.  Create an appropriate IAM policy for Athena access. Your service account
     needs access to three AWS services:
 
-    - `Glue` manages metadata required to map query-referenced resources to data
+    - `Glue` for managing metadata required to map query-referenced resources to data
       stored in s3.
-    - `S3` to access the underlying data that you want to query in addition to
+    - `S3` for accessing the underlying data that you want to query in addition to
       storing results of your queries.
     - `Athena` for managing and running queries.
 
@@ -81,30 +81,31 @@ Glean's caching. Amazon has a few good articles on
     means, assigning the policy to a role, adding the role to a group's
     permissions and adding the user to that group.
 4.  [Generate an access key](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/)
-    for your IAM user
+    for your IAM user.
 
 ## Create an Athena database connection in Glean
 
-1. First, goto your
+1. First, go to your
    [Glean settings](https://glean.io/app/p/settings#database_connections) page
-   from the project dropdown
-2. Click `+ New Database Connection` and fill out the fields below
+   from the project dropdown.
+2. Click `+ New Database Connection` and fill out the fields below.
 
 ### Settings
 
 <Callout>
-  We highly recommend specifying a schema (ie. Athena database) to make querying
-  metadata and getting lists of tables faster in Glean during development.
+  We highly recommend specifying a schema (i.e. Athena database) to make
+  querying metadata and getting lists of tables faster in Glean during
+  development.
 </Callout>
 
-- **AWS Region**: the aws region to use to query data
-- **port**: _optional_
-- **schema**: also called databases in Athena documentation. Listing tables and
+- **AWS Region:** The AWS region to use to query data.
+- **Port:** _(optional)_ The port to connect to.
+- **Schema:** _(optional, but highly recommended)_ Also called a "database" in Athena documentation. Listing tables and
   testing connections can take a long time in Athena if you don't specify a
   schema.
-- **S3 staging directory**: the S3 path where Athena will store query results.
-- **AWS access key ID**: the IAM user's access key
-- **AWS secret access key**: the IAM user's scret access key, generated in step
-  4 above
-- **Query parameters**: dditional database connection parameters in the format
-  ` workGroup=value&param=value`
+- **S3 Staging Directory:** The S3 path where Athena will store query results.
+- **AWS Access Key ID:** The IAM user's access key.
+- **AWS Secret Access Key:** The IAM user's scret access key, generated in step
+  4 [above](/docs/database-connections/athena#create-an-aws-iam-user-for-glean).
+- **Query Parameters:** _(optional)_ Additional database connection parameters in the format
+  ` workGroup=value&param=value`.
