@@ -2,5 +2,6 @@
   "cli": { "title": "Using the Glean CLI" },
   "yaml-editor": { "title": "Using the YAML Editor" },
   "grns": { "title": "GRNs" },
-  "config-schema": { "title": "Configuration Schemas" }
+  "config-schema": { "title": "Configuration Schemas" },
+  "dbt-integration": { "title": "dbt Integration" }
 }

@@ -150,3 +150,7 @@ If you provide a [GRN](./grns.mdx) as an argument, `glean pull` will restrict it
 Note that `glean pull` is a potentially destructive operation that will change files in your working directory. Make sure your `git status` is clean (no uncommitted changes in the working directory) before pulling resources.
 
 `glean pull` will not remove configuration files when the corresponding resource is deleted from the web UI.
+
+## dbt Utility
+
+`glean preview` and `glean deploy` can optionally accept a flag, `--dbt`, which runs `dbt parse` and then uses the resulting manifest for the corresponding Glean build. See the [dbt integration documentation](./dbt-integration.mdx) for more information about the Glean dbt integration.
