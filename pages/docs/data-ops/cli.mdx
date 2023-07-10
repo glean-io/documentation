@@ -8,7 +8,7 @@ The Glean CLI allows you to create Preview and Deploy Builds directly from your 
 
 ### 1. Create an Access Key
 
-To use the CLI with your Glean project, you need an **Access Key**. An Access Key is used by Glean to identify who you are and what resources you have access to. You should use a separate access key for each distinct user or service using the CLI.
+To use the CLI with your Glean project, you need an **Access Key**. An Access Key is used by Glean to identify who you are and what resources you have access to. You should use a separate Access Key for each distinct user or service using the CLI.
 
 1.  Go to the [`Settings`](https://glean.io/app/p/settings#access_keys) page using the link in the project dropdown
 2.  Click on `Access Keys`
@@ -28,17 +28,21 @@ $ mv ~/Downloads/glean_access_key.json ~/.glean/
 
 ### 2. Install Glean CLI
 
-1. Confirm [Python 3](https://www.python.org/downloads/) is installed
+1. Confirm [Python 3](https://www.python.org/downloads/) is installed:
+
    ```bash
    $ python3 --version
    ```
-2. Install Glean CLI into a virtual environment
+
+2. Install Glean CLI into a virtual environment:
+
    ```bash
    $ python3 -m venv venv
    $ source venv/bin/activate
    $ pip3 install glean-cli
    ```
-3. confirm sucessful installation
+
+3. Confirm sucessful installation:
 
 ```bash
 $ glean
@@ -72,13 +76,13 @@ $ glean explore database_connection_name table_name
 
 Since this creates a Preview only, the Data Model won't be persisted. However, a model configuration file will be saved in your local directory, so that you can later `glean deploy` that file.
 
-## Moving your access key
+## Moving your Access Key
 
-By default, the CLI expects your access key to be located at `~/.glean/glean_access_key.json`. You can override this by:
+By default, the CLI expects your Access Key to be located at `~/.glean/glean_access_key.json`. You can override this by:
 
 - Setting the `GLEAN_CREDENTIALS_FILEPATH` environment variable to a different filepath
 - Using the `--credentials-filepath` command-line option to use a different filepath
-- Setting the `GLEAN_PROJECT_ID`, `GLEAN_ACCESS_KEY_ID`, and `GLEAN_SECRET_ACCESS_KEY_TOKEN` environment variables to the respective values stored in your access key file.
+- Setting the `GLEAN_PROJECT_ID`, `GLEAN_ACCESS_KEY_ID`, and `GLEAN_SECRET_ACCESS_KEY_TOKEN` environment variables to the respective values stored in your Access Key file.
 
 ## Using environment variables
 
@@ -115,9 +119,9 @@ The CLI allows you to integrate Glean into your existing development and deploym
 7. Merge the Pull Request into your `main` git branch.
 8. Run `glean deploy --git-revision=main` to deploy your new Glean resources to your project.
 
-## Continuous Integration
+## Continuous integration
 
-You can invoke the glean CLI in a continuous integration system to automatically generate previews or deploy your project.
+You can invoke the Glean CLI in a continuous integration system to automatically generate previews or deploy your project.
 
 For example, if you use GitHub, the following GitHub action will generate a Build Preview of the local `glean` directory whenever you send a pull request:
 
@@ -144,7 +148,11 @@ jobs:
 If you provide a [GRN](./grns.mdx) as an argument, `glean pull` will restrict itself to only the specified resource and all resources it depends on. For example, `glean pull sv:the-sv-id` will retrieve the resource configuration for the specified saved view, plus any model(s) it depends on.
 
 <Callout type="warning">
-  When developing locally, you are not required to specify GRNs in Glean resource configuration files. However, when running `glean deploy`, GRNs are assigned based on the relative path from the working directory to the resource configuration file. Subsequent uses of `glean pull` should therefore be run from the same working directory.
+  When developing locally, you are not required to specify GRNs in Glean
+  resource configuration files. However, when running `glean deploy`, GRNs are
+  assigned based on the relative path from the working directory to the resource
+  configuration file. Subsequent uses of `glean pull` should therefore be run
+  from the same working directory.
 </Callout>
 
 Note that `glean pull` is a potentially destructive operation that will change files in your working directory. Make sure your `git status` is clean (no uncommitted changes in the working directory) before pulling resources.

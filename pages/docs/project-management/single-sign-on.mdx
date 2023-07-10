@@ -2,7 +2,7 @@ import { Callout } from "nextra-theme-docs";
 
 # Single Sign-On
 
-Glean supports using an Identity Provider (IdP) such as Okta to control authentication through single sign-on.
+Glean supports using an Identity Provider (IdP) such as Okta to control authentication through single sign-on (SSO).
 It also supports provisioning and deprovisioning Glean users along with managing their custom Glean
 role assignments through SCIM (directory sync). This document describes how to integrate Glean into your IdP.
 
@@ -15,7 +15,7 @@ role assignments through SCIM (directory sync). This document describes how to i
 
 ## Setting up single sign-on
 
-Glean supports the SAML protocol for single sign-on (SSO) authentication. Once you reach out to us to
+Glean supports the SAML protocol for single sign-on authentication. Once you reach out to us to
 initiate setup, we'll provide you with a link that will walk you through the necessary steps to perform in your IdP.
 
 Upon completing this integration, users will no longer be able to log in with their previous Glean authentication method
@@ -63,13 +63,13 @@ overwritten by the IdP user's information. If we one, that Glean user will now b
 email) will be reflected in Glean going forward. If we find no existing user with the given primary email on SCIM initiation, that IdP user will be provisioned
 a new Glean user.
 
-### Managing Users
+### Managing users
 
 When you assign users to Glean in your IdP, Glean will automatically be notified of these changes in real time through SCIM and will create or update the relevant
 Glean user appropriately. You don't need to perform any actions in Glean unless you're attempting to create a new role and assign users to it (see below). In fact,
 creating, editing, and deleting users in Glean is restricted for SSO-enabled projects.
 
-### Managing Roles
+### Managing roles
 
 Creating new Glean roles and editing existing roles must still be done in your Glean project. Glean `Owner`s can do this by default. However, if SSO is enabled for your
 project, they won't be able to assign users to these roles in Glean. This must be done in your IdP by modifying the `roles` custom attribute defined for those users.

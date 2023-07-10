@@ -7,11 +7,11 @@ Here is a high-level description of what actually happens during the build proce
 - **Create resources.** For models that you check in that do not currently exist, the model is created from scratch from your configuration file and from the database. This means that the base table and all the columns must still exist in the database for the build to succeed.
 - **Update resources.** If a column is changed, it will be updated in all dependent items (regardless of whether the dependent items were also checked in) - so things like name changes should be correctly reflected.
 - **Clean up resources.** If any columns or models are deleted, all dependent items that relied on that column or model will also be deleted.
-- **Smoke Test.** Once the model is built, a single aggregate analytical query will be run against the database to make sure that data aggregation can still be run against the model.
+- **Smoke test.** Once the model is built, a single aggregate analytical query will be run against the database to make sure that data aggregation can still be run against the model.
 
 If there is an error while deploying a Data Model, the build process will revert to the previous version of that model, and all dependent resources of that model will not be updated.
 
-## Glean Configuration Files
+## Glean configuration files
 
 Glean supports configuration files written in YAML or JSON. A Glean Build will attempt to validate every file in the specified path with a `.yml` or `.json` extension.
 
@@ -35,7 +35,7 @@ An easy way to get started building a configuration file is to export it from an
 - Saved Views: On any Explore page, click the `⋮` in the top-right corner of the chart area, and then click `Export Saved View Config File`.
 - Dashboards: On any Dashboard page, click the `⋮` in the top-right corner, and then click `View DataOps Config File`.
 
-### Migrating Existing Resources into DataOps
+### Migrating existing resources into DataOps
 
 If you have existing content built in the UI and want to move it into DataOps,
 you can specify the `grn` property on the resource. This will cause the config to
