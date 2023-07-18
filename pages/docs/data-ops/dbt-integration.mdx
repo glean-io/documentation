@@ -16,7 +16,6 @@ models:
     meta:
       glean:
         glean: "1.0" # Glean dbt integration version
-        name: # Glean model name
         source:
           connectionName: # which Glean data connection to use
     columns:
@@ -25,7 +24,7 @@ models:
 
 `source` has the same options as the corresponding field of [Glean data models](./config-schema/data-models.mdx). Unless otherwise specified, Glean automatically infers defaults for the source `physicalName` and `schema`. If no `connectionName` or `connectionId` is specified, Glean will try to use a connection whose name is the same as the dbt target database (e.g. `"bigquery"` or `"snowflake"`).
 
-You can then use dbt to produce a [Manifest JSON file](https://docs.getdbt.com/reference/artifacts/manifest-json), which can be included with any Glean DataOps build (or preview):
+You may then use dbt-core to produce a [Manifest JSON file](https://docs.getdbt.com/reference/artifacts/manifest-json), which should be included with any Glean DataOps build (or preview):
 
 ```bash
 $ glean preview --dbt-manifest=./target/manifest.json
@@ -76,6 +75,8 @@ models:
 ```
 
 Imported dbt models are exclusively controlled by DataOps and cannot be saved from the web UI, though you are still free to prototype and experiment with dbt models in the Glean model editor.
+
+Column descriptions will be [automatically synced](../data-modeling/description-syncing.mdx) from dbt to the corresponding Glean model during deploys.
 
 ## Global configuration
 
