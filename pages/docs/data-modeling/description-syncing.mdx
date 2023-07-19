@@ -4,7 +4,9 @@ import { Callout } from "nextra-theme-docs";
 
 If you've added descriptions to your columns via column comments/descriptions or
 dbt `persist-docs`, Glean will automatically import those descriptions when you
-create a Data Model or add new Attributes to it.
+create a Data Model or add new Attributes to it. Additionally, if your model was
+created using the Glean [dbt integration](../data-ops/dbt-integration.mdx), it
+will automatically include descriptions from your dbt model schema.
 
 In addition, if the comments/descriptions in your table change, you can import
 the latest values using the `Import descriptions` feature in the Model Builder.
