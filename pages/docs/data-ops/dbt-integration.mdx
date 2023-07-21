@@ -22,10 +22,7 @@ models:
       # preventUpdatesFromUI defaults to false, but can be set to true
       preventUpdatesFromUI: false
       source:
-        connectionName: Uploads # the name of the conneciton in Glean
-        # can use jinja
-        # schema is always optional
-        schema: "{{ env_var('DBT_SCHEMA') }}"
+        connectionName: bigquery-prod # the name of the conneciton in Glean
 ```
 
 ### Define model information
@@ -182,6 +179,8 @@ models:
         glean: "1.0"
         source:
           connectionName: # which Glean data connection to use
+          # schema is always optional because Glean will infer it
+          schema: "{{ env_var('DBT_SCHEMA') }}" # can use jinja substitution here
 ```
 
 This configuration will add the `meta.glean` object to every model in `the_models`, so they will all be imported into Glean. You can still add additional metadata for the specific models (such as adding additional metrics).
