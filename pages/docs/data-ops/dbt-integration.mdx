@@ -1,33 +1,109 @@
+import { Steps } from 'nextra-theme-docs'
+
 # dbt Integration
 
 ## Overview
 
-Glean can import models directly from dbt. This is useful for incorporating Glean into existing DataOps workflows, allowing you to make changes to your dbt schema while identifying issues in downstream visualizations and dashboards.
+Glean can import models directly from dbt by specifying metrics in your dbt yaml file. Glean will automatically sync dbt documentation and keep metrics in sync with downstream dashboards (whether they are checked into code or not).  It's also possible to integrate with CI/CD processes.
 
-You must add the following fields to the `meta` key of each dbt model you want imported to Glean:
+<Steps>
 
-```yaml
-# schema.yml
+### Configure your `dbt_project.yml`
+
+You can use the `glean-defaults` key to specify the glean version (which is required) and connection information.
+
+```yaml filename="dbt_project.yml" copy
+
+models:
+  +meta:
+    # glean-defaults settings will be merged into each Glean model
+    glean-defaults:
+      glean: "1.0"
+      # preventUpdatesFromUI defaults to false, but can be set to true
+      preventUpdatesFromUI: false
+      source:
+        connectionName: bigquery-prod # the name of the conneciton in Glean
+```
+
+### Define model information
+
+The simplest example of a Glean model just defines a metric.  Glean models must include the `glean` key in the dbt model.
+
+```yaml filename="models/schema.yml" copy
+version: 2
+
+models:
+  # 
+  - name: order_attribution
+    description: This model describes how each order is attributed to different marketing touchpoints.
+    columns:
+      - name: attribution_id
+        description: Unique ID for the attribution.
+      - name: order_id
+        description: Order ID, matches the order_id in the sales model.
+      - name: touchpoint_id
+        description: ID of the marketing touchpoint which led to the order.
+    config:
+      meta:
+        glean:
+          cols:
+            - id: row_count
+              type: metric
+              name: Order Attribution Records
+              aggregate: row_count
+```
+
+### Build your glean models
+
+This is the simplest way to preview your models, there are more advanced options below.
+
+```bash copy
+# assuming you've already built your tables with dbt run
+glean preview --dbt
+
+# and later
+glean deploy --dbt
+```
+
+</Steps>
+
+## Model specification
+
+The `glean-defaults` connection configuration in the example above gets merged into the Glean configuration inside each dbt model.  If you don't specify the defaults, you must add the complete connection information in the `meta` key of each dbt model you want imported to Glean.  Only dbt models that specify a `glean` key will get built into Glean models.  
+
+```yaml filename="schema.yml" copy
 
 version: 2
 
 models:
-  - # ... dbt model configuration 
+  - name: a_model
+    description: model docs here
     meta:
       glean:
         glean: "1.0" # Glean dbt integration version
         source:
-          connectionName: # which Glean data connection to use
+          connectionName: snowflake_production # which Glean data connection to use, can also be specified globally if you use glean-defaults
     columns:
+      - name: a_str
+        description: some column documentation
       # ... your dbt columns
 ```
 
-`source` has the same options as the corresponding field of [Glean data models](./config-schema/data-models.mdx). Unless otherwise specified, Glean automatically infers defaults for the source `physicalName` and `schema`. If no `connectionName` or `connectionId` is specified, Glean will try to use a connection whose name is the same as the dbt target database (e.g. `"bigquery"` or `"snowflake"`).
+Some notes on how models get built from dbt:
+- Glean will read the dbt manifest file and find all models with a `glean` key specified within the `meta` key.
+- The name of dbt model is imported into Glean as the model name (this can be overriden).
+- Columns specified explicitly in the dbt model will become attributes in Glean.
+- Descriptions on the model will get imported as model documentation.
+- You can specify additional attribute configuration in a `meta` key for a column.
+
+How data model source is determined:
+- `source` has the same options as the corresponding field of [Glean data models](./config-schema/data-models.mdx).
+- Unless otherwise specified, Glean automatically infers defaults for the source `physicalName` and `schema`. If no `connectionName` or `connectionId` is specified, Glean will try to use a connection whose name is the same as the dbt target database (e.g. `"bigquery"` or `"snowflake"`).
 
 You may then use dbt-core to produce a [Manifest JSON file](https://docs.getdbt.com/reference/artifacts/manifest-json), which should be included with any Glean DataOps build (or preview):
 
-```bash
-$ glean preview --dbt-manifest=./target/manifest.json
+```bash copy
+glean preview --dbt-manifest=./target/manifest.json
 ```
 
 Glean will include each dbt column as an attribute in the corresponding Glean model. You can also add additional fields to the dbt columns to take advantage of Glean's more advanced modeling features:
@@ -82,27 +158,29 @@ Column descriptions will be [automatically synced](../data-modeling/description-
 
 If all models use the same Glean `source`, you can configure a default `source` in the `dbt_project.yml` file:
 
-```yaml
-# dbt_project.yml
+```yaml filename="dbt_project.yml"
 
 models:
   the_models:
     +meta: # will be applied to every model in models/the_models
-      gleanDefaultSource:
-        connectionName: # which Glean data connection to use
+      glean-defaults:
+        source:
+          connectionName: # which Glean data connection to use
 ```
 
 To import all dbt models in a folder as Glean models, simply add
 
-```yaml
-# dbt_project.yml
+```yaml filename="dbt_project.yml"
 
 models:
   the_models:
     +meta:
-      gleanDefaultSource: # as above
-      glean:
+      glean-defaults:
         glean: "1.0"
+        source:
+          connectionName: # which Glean data connection to use
+          # schema is always optional because Glean will infer it
+          schema: "{{ env_var('DBT_SCHEMA') }}" # can use jinja substitution here
 ```
 
 This configuration will add the `meta.glean` object to every model in `the_models`, so they will all be imported into Glean. You can still add additional metadata for the specific models (such as adding additional metrics).
