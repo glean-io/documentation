@@ -4,7 +4,7 @@ import { Steps } from 'nextra-theme-docs'
 
 ## Overview
 
-Glean can import models directly from dbt by specifying metrics in your dbt yaml file. Glean will automatically sync dbt documentation and keep metrics in sync with downstream dashboards (whether they are checked into code or not).  It's also possible to integrate with CI/CD processes.
+Glean can import models directly from dbt by specifying metrics in your dbt yaml file. Glean will automatically sync dbt documentation and keep metrics in sync with downstream dashboards (whether they are checked into version control or not). The Glean dbt integration can also be integrated in CI/CD workflows.
 
 <Steps>
 
@@ -19,7 +19,7 @@ models:
     # glean-defaults settings will be merged into each Glean model
     glean-defaults:
       glean: "1.0"
-      # preventUpdatesFromUI defaults to false, but can be set to true
+      # preventUpdatesFromUI defaults to true, but can be set to false
       preventUpdatesFromUI: false
       source:
         connectionName: bigquery-prod # the name of the conneciton in Glean
@@ -43,14 +43,13 @@ models:
         description: Order ID, matches the order_id in the sales model.
       - name: touchpoint_id
         description: ID of the marketing touchpoint which led to the order.
-    config:
-      meta:
-        glean:
-          cols:
-            - id: row_count
-              type: metric
-              name: Order Attribution Records
-              aggregate: row_count
+    meta:
+      glean:
+        cols:
+          - id: row_count
+            type: metric
+            name: Order Attribution Records
+            aggregate: row_count
 ```
 
 ### Build your Glean models
@@ -180,7 +179,7 @@ models:
         source:
           connectionName: # which Glean data connection to use
           # schema is always optional because Glean will infer it
-          schema: "{{ env_var('DBT_SCHEMA') }}" # can use jinja substitution here
+          schema: "{{ target.schema }}" # can use jinja substitution here
 ```
 
 This configuration will add the `meta.glean` object to every model in `the_models`, so they will all be imported into Glean. You can still add additional metadata for the specific models (such as adding additional metrics).
