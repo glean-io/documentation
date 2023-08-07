@@ -6,8 +6,9 @@ import { Callout } from "nextra-theme-docs";
 engine that allows you to do analytics on files stored in S3 (Simple Storage
 Service). So, it's not really a database, it's more of a way of using SQL with
 csv and parquet files that are stored as objects in the cloud. Athena runs on a
-fork of the opensource Presto project (now called [Trino](https://trino.io/))
-that was first developed at Facebook.
+fork of the opensource Presto project that was first developed at Facebook (the
+popular db engine [Trino](https://trino.io/) is also based on Presto).
+
 
 Because Athena is a query engine that can query data in lots of different
 formats, it can be slow. Glean assumes you have data in a fast data warehouse
