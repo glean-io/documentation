@@ -28,6 +28,8 @@ const nextJsConfig = {
 
     // redirects for backwards compatability:
     { source: "/docs/dashboards/Overview", destination: "/docs/dashboards/", permanent: false },
+    { source: "/docs/dashboards/saved-views", destination: "/docs/dashboards/saved-explorations", permanent: false },
+    { source: "/docs/dashboards/Saved-View", destination: "/docs/dashboards/saved-explorations", permanent: false },
     { source: "/docs/data-modeling/Data-Models-Overview", destination: "/docs/data-modeling/", permanent: false },
     { source: "/guides/data-modeling-best-practices", destination: "/docs/data-modeling/", permanent: false },
     { source: "/docs/data-modeling/best-practices", destination: "/docs/data-modeling/best-practices/", permanent: false },
