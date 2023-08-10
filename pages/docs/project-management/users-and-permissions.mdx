@@ -39,22 +39,22 @@ of your team to edit data models. See [Data Modeling Best Practices](/docs/data-
 
 There are four roles in Glean with increasing levels of permissions.
 
-| Role         | Description                                                                                                |
-| ------------ | ---------------------------------------------------------------------------------------------------------- |
-| Owner        | Owners can manage members in a project and manage data connections and manage data connection credentials. |
-| Editor       | Editors can manage data models, both creating and editing existing data models.                            |
-| Collaborator | Collaborators can interact with shared views, query data sources, explore data and create new saved views. |
-| Viewer       | Viewers can interact with shared views, query data sources, and explore data.                              |
+| Role         | Description                                                                                                       |
+| ------------ | ----------------------------------------------------------------------------------------------------------------- |
+| Owner        | Owners can manage members in a project and manage data connections and manage data connection credentials.        |
+| Editor       | Editors can manage data models, both creating and editing existing data models.                                   |
+| Collaborator | Collaborators can interact with shared views, query data sources, explore data and create new saved explorations. |
+| Viewer       | Viewers can interact with shared views, query data sources, and explore data.                                     |
 
 ## Modifying roles
 
 <Callout type="info">
   **Limitations**— Roles are limited today in Glean to two main functions: 1)
-  governing which actions can be taken such as creating saved views and editing
-  dashboards; and 2) governing access to data models. If you do not have access
-  to read data from a data model, then saved views for that data model will not
-  work. Today, it is not possible to remove access from a specific view
-  independently from a data model.
+  governing which actions can be taken such as creating saved explorations and
+  editing dashboards; and 2) governing access to data models. If you do not have
+  access to read data from a data model, then saved explorations for that data
+  model will not work. Today, it is not possible to remove access from a
+  specific saved exploration independently from a data model.
 </Callout>
 
 Glean uses role based access control to allow users to do specific actions within Glean. You can assign default roles, configure data access and limit which actions specific users can take inside of Glean.
