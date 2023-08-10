@@ -2,13 +2,13 @@ import { Callout } from "nextra-theme-docs";
 
 # Analytics Embedding
 
-Glean supports embedding Data Models, Saved Views, and Dashboards in external applications via an iframe.
+Glean supports embedding Data Models, Saved Explorations, and Dashboards in external applications via an iframe.
 
 ## Embedding a resource
 
-To embed a Glean resource, add `viewMode=embed` to the URL parameters of your Data Model, Saved View, or Dashboard URL and set that URL to be the `src` of an `iframe` HTML tag.
+To embed a Glean resource, add `viewMode=embed` to the URL parameters of your Data Model, Saved Exploration, or Dashboard URL and set that URL to be the `src` of an `iframe` HTML tag.
 
-For instance, if your Saved View URL is:
+For instance, if your Saved Exploration URL is:
 
 ```
 https://glean.io/app/sv/Sgf5dLgMfFeafeDe
@@ -37,7 +37,7 @@ For instance, if your project invite link is:
 https://glean.io/app?projectInviteToken=p-Ip2Lw8ep6XafEzSo_NF
 ```
 
-and your Saved View URL is:
+and your Saved Exploration URL is:
 
 ```
 https://glean.io/app/sv/Sgf5dLgMfFeafeDe
@@ -61,7 +61,7 @@ Embedded resources are also compatible with [Get Access Domains](/docs/project-m
   src="https://demo.glean.io/app/m/b76d1af8-69c3-3870-bdd2-46cdb2cc14df?viewMode=embed"
 ></iframe>
 
-### Embedded Saved View
+### Embedded Saved Exploration
 
 <iframe
   width="100%"
