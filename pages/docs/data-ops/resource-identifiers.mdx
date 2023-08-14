@@ -1,15 +1,17 @@
-# Glean Resource Names (GRNs)
+# Resource identifiers
+
+## Glean Resource Names (GRNs)
 
 A Glean Resource Name or GRN is a way to reference Glean resources in a stable way.
 As a resource is changed, renamed, moved between collections, etc. its GRN will
 always remain the same.
 
-## Anatomy of a GRN
+### Anatomy of a GRN
 
-A GRN is comprised of two components, separated by `:`
+A GRN is comprised of three components: type, id, and alias, separated by `:`
 
 ```bash
-type:id
+type:id:alias
 ```
 
 - `type` identifies the resource type
@@ -21,6 +23,20 @@ type:id
 
 - `id` is an globally unique identifier first assigned when the resource
   is created. The ID appears in the URL bar when viewing a resource.
+
+- `alias` is an optional unique identifier set by the user in the resource's DataOps config.
+
+Not all 3 components are necessary to specify a GRN. The `alias` can be omitted as long as an `id` is present:
+
+```bash
+type:id
+```
+
+and, likewise, the `id` can be omitted as long as an `alias` is specified (note the double `::`):
+
+```bash
+type::alias
+```
 
 The following are all valid GRNs:
 
@@ -49,3 +65,17 @@ the Glean web app into DataOps, without recreating it.
 
 Anywhere you specify a filepath in a DataOps config, you may instead specify a GRN.
 This allows you to reference resources independently of how you structure your files.
+
+### Referencing dbt models
+
+When referencing models imported by the [dbt integration](./dbt-integration.mdx), the standard GRN format is valid. 
+It is also possible to reference dbt models using the unique identifier of the dbt node representing the model:
+```bash
+dbt::dbtuniqueid
+```
+
+For example:
+
+```bash
+dbt::model.jaffle_shop.orders
+```
