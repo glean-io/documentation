@@ -3,5 +3,6 @@
   "yaml-editor": { "title": "Using the YAML Editor" },
   "grns": { "title": "GRNs" },
   "config-schema": { "title": "Configuration Schemas" },
-  "dbt-integration": { "title": "dbt Integration" }
+  "dbt-integration": { "title": "dbt Integration" },
+  "resource-lineage": { "title": "Resource Lineage" }
 }
