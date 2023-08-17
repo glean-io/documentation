@@ -1,6 +1,7 @@
 {
   "add-data-model": {},
   "description-syncing": {},
+  "model-joins": {},
   "metrics": {},
   "best-practices": {},
   "query-data-files": { "title": "Uploading Files" },
