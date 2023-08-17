@@ -2,7 +2,7 @@ import { Callout } from "nextra-theme-docs";
 
 # Model Joins
 
-In many cases, it can be useful to reuse data from one data model in others. This can be done in Glean by configuring joins across models. In practice, this is essentially defining a [primary-foreign key relationship](https://docs.oracle.com/cd/E12100_01/books/admintool/admintool_DataModeling4.html#:~:text=A%20primary%20key%2Dforeign%20key,key%20columns%20in%20another%20table.) across two Glean models.
+In many cases, it can be useful to reuse data from one data model in others. This can be done in Glean by configuring joins across models. In essence, this is defining a [primary-foreign key relationship](https://docs.oracle.com/cd/E12100_01/books/admintool/admintool_DataModeling4.html#:~:text=A%20primary%20key%2Dforeign%20key,key%20columns%20in%20another%20table.) across two Glean models.
 
 After configuring a join, you'll be able to use any attributes from the joined model in the base model. Note that joins only include the model **attributes**, not the model **metrics**.
 
@@ -85,3 +85,7 @@ For example, they'll be added into the attribute tray alongside your pre-existin
   alt="Attribute Tray"
   style={{ padding: "20px" }}
 />
+
+## Custom Metrics with joined data
+
+It's possible to utilize columns from joined models when defining custom metrics. See [Using Joined Columns in Metric SQL](./metrics#using-joined-columns-in-metric-sql) for more info.
