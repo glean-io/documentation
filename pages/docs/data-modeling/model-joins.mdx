@@ -2,7 +2,7 @@ import { Callout } from "nextra-theme-docs";
 
 # Model Joins
 
-In many cases, it can be useful to reuse data from one data model in others. This can be done in Glean by configuring joins across models. In essence, this is defining a [primary-foreign key relationship](https://docs.oracle.com/cd/E12100_01/books/admintool/admintool_DataModeling4.html#:~:text=A%20primary%20key%2Dforeign%20key,key%20columns%20in%20another%20table.) across two Glean models.
+In many cases, it can be useful to reuse data from one data model in others. This can be done in Glean by configuring joins across models. In essence, this is defining a primary-foreign key relationship across two Glean models.
 
 After configuring a join, you'll be able to use any attributes from the joined model in the base model. Note that joins only include the model **attributes**, not the model **metrics**.
 
@@ -21,8 +21,8 @@ There are two steps to setting up a join between two models:
 
 You first need to configure a primary key on the model you wish to join. Primary keys must meet the following conditions:
 
-- They must be **unique** in the underlying data table - we validate this when you set it.
 - They must have a **string** or **numeric** type.
+- They must be **unique** in the underlying data table.
 
 You can configure a primary key using the following steps:
 
@@ -30,7 +30,7 @@ You can configure a primary key using the following steps:
 
 2. Ensure you have defined an attribute for the primary key to be assigned to.
 
-3. Open the attribute editor and click `Set as primary key`. Uniqueness will also be validated at this step.
+3. Open the attribute editor and click `Set as primary key`.
 
 <img
   src="/model_joins/pk.png"
