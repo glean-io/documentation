@@ -1,0 +1,26 @@
+import { Callout, Steps } from "nextra-theme-docs";
+
+# Quickstart
+
+The Glean CLI lets you build your glean resources from configuration files, with [preview](./commands/preview) builds and [deployments](./commands/deploy).  Check out [example projects on github](https://github.com/glean-io/examples).
+
+
+### Install the glean cli
+First signup for an account by clicking 'get access' on [glean.io](https://glean.io).
+
+```bash copy
+pip install glean-cli
+```
+
+### Authenticate
+
+The `token` command will take you through a web-based auth flow and download your access token to the default token location at ~/.glean/glean_access_key.json - you can also specify the token location with the environment variable `GLEAN_CREDENTIALS_FILEPATH`.
+
+```
+glean token
+```
+
+You can now test that things are working properly:
+```
+glean pull
+```

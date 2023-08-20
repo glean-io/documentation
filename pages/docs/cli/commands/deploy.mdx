@@ -1,0 +1,23 @@
+import { Cards, Card } from 'nextra-theme-docs'
+
+# Deploy
+
+Deploy is a convenience function which works similarly to `glean build --deploy`.  The one other difference is that `deploy` will allow you to preview your build before deployment and show you what will change.
+<br />
+<Cards>
+  <Card arrow icon=" 🏗️ " title="build options" href="./build" />
+</Cards>
+<br />
+
+```bash filename="examples"
+# this will run a preview first and ask if you really want to deploy:
+glean deploy
+
+# these two commands are identail
+glean deploy --no-preview
+glean build --deploy
+
+# you can use deploy with all the same workfows as build:
+glean deploy --dbt
+glean deploy --git-revision=main
+```

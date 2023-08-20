@@ -1,0 +1,14 @@
+# token
+
+The token command lets you authenticate the CLI.  You can also goto your [settings page]([`Settings`](https://glean.io/app/p/settings#access_keys) in the web UI to create and manager your access tokens.
+
+```bash copy
+glean token
+```
+
+By default, the CLI expects your Access Key to be located at `~/.glean/glean_access_key.json`. You can override this by:
+
+- Setting the `GLEAN_CREDENTIALS_FILEPATH` environment variable to a different filepath
+- Using the `--credentials-filepath` command-line option to use a different filepath
+- Setting the `GLEAN_PROJECT_ID`, `GLEAN_ACCESS_KEY_ID`, and `GLEAN_SECRET_ACCESS_KEY_TOKEN` environment variables to the respective values stored in your Access Key file.
+

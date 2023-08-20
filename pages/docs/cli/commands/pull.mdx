@@ -1,0 +1,49 @@
+import { Callout } from "nextra-theme-docs";
+
+# Glean Pull
+
+`glean pull` is a utility for getting resource configuraiton files from the web UI to a local workspace: you can use it to migrate resources to a code-based workflow.  If you already have local files that correspond with Glean resources, `glean pull` will update the local versions of those files.
+
+## Update resources and dev workflow
+
+The default behavior of `pull` is to only update resources that were created with the `glean` command.  For example, if you originally built four models with the `glean` command and you run `glean pull` from an empty directory, you'll only pull those four model files.  You won't get any additional resources built in the UI.
+
+## `pull` resources originally built in the UI
+
+You can also pull resources that were not built with the `glean pull -all` command.  If you want to pull down a resource that was built in the UI, you have two options:
+
+### 1. pull every resource with `--all`
+
+You can use the all flag to get ever single Glean resource, regardless of whether it was created with the `glean` command or not.
+
+```bash copy
+glean pull --all
+```
+
+### 2. pull a specific resource with a GRN
+
+You can pull down a specific resource by it's [Global Resource Name](./grns.mdx).
+
+<Callout type="warning">
+  When developing locally, you are not required to specify GRNs in Glean
+  resource configuration files. However, when running `glean deploy`, GRNs are
+  assigned based on the relative path from the working directory to the resource
+  configuration file. Subsequent uses of `glean pull` should therefore be run
+  from the same working directory.
+</Callout>
+
+```bash
+# pull by unique identifier:
+glean pull m:s3AdinvBhsdJ:
+
+## or pull by alias:
+glean pull m::my_sales_model
+```
+
+## Managing dbt state with pull
+
+The behavior of Glean pull is a bit different when used for dbt models.  We cannot update models automatically inside of dbt files (since there could be jinja that we can't decompile).  Instead up updating resources in place, we'll create new model files outside of your dbt project.  This lets you to inspect the configuration and merge it into your dbt files.
+
+## Config format used in `pull`
+
+Glean pull uses the most verbose (and specific) possible format of a resource. Some configuration that is just defaulted or configured by Glean will be exported.  For example if you export a resource it will default to being exported with a `pinned` grn, you can remove the grn to allow you to deploy the resource across different projects (or use an alias so that the resource is not bound specifically instance in a single project).

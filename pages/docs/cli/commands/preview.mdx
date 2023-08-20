@@ -1,0 +1,76 @@
+import { Cards, Card, Steps } from 'nextra-theme-docs'
+
+# Preview
+
+The preview command in Glean is a safe way to see what Glean configuration files will look like inside of Glean without affecting the state of the BI tool.  Pull makes forking and expirmenting with Glean from the command line cheap and easy.  A preview goes through the following steps:
+
+1. Validate that local glean configuration files and dbt configuration (if using `--dbt`)
+2. Validate that the data warehouse schema is in sync with your models and metrics
+3. Create a copy of your main project and put it into a safe, containerized preview of your project
+   a. provides you a link to this forked version of your project
+4. Apply the configuration state fro your local file system
+5. Provide you a list of all "managed" resources that are changed: either created, updated, deleted or unchanged
+
+You can also generate a preview with `glean build`, so all the workfows: like git workflows, dbt workflows etc. that are available with the `build` command are also available in the `preview` command.
+
+<br />
+<Cards>
+  <Card arrow icon=" 🏗️ " title="build options" href="./build" />
+</Cards>
+
+
+## Previewing resources
+
+<Steps>
+### run `glean preview`
+
+```bash {30}
+# from the root of your dbt directory
+$ glean preview --dbt
+
+🐇 Running `dbt parse` to generate a manifest file.
+
+dbt parse
+--- dbt output ---
+17:15:10  Running with dbt=1.5.1
+17:15:10  Performance info: target/perf_info.json
+--- end of dbt output ---
+
+✅ Using manifest file at target/manifest.json
+
+🏗️  Creating preview build...
+
+Successfully logged in to Customer A
+Project id: ef97b962-5146-442c-9342-2270ed330b65
+Access key id: 9df02f73-7c9c-41f5-9d09-9d938e35ad63
+📦 Build 16LDUF46wuCwM8B2 created successfully.
+
+Unchanged:
+*  Model - order_attribution
+*  Model - products
+*  Model - customers
+*  Model - orders
+*  Model - campaigns
+*  Model - sales
+*  Model - marketing_touchpoints
+
+Details: https://glean.io/app/p/builds/16LDUF46wuCwM8B2
+```
+
+### open the build
+
+Goto the build preview link at the bottom of the build details, for example `https://glean.io/app/p/builds/16LDUF46wuCwM8B2`. The build preview gives a list of resources with preview links.
+<br />
+
+<img src="/build.png" style={{maxWidth: "600px" }} />
+
+
+### navigate resource previews
+
+Click any resource to open the preview and start to explore.  The build is added as a url parameter so you can share links (or post them to PR's etc.).  You can navigate through your entire project in the preview mode.
+
+<br />
+
+<img src="/preview.png" />
+
+</Steps>

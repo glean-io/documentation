@@ -5,6 +5,7 @@
   "visualizing-data": { "title": "Data Explorer" },
   "sharing-data-externally": { "title": "Sharing Data Externally" },
   "dashboards": { "title": "Dashboards" },
+  "cli": { "title": "CLI" },
   "data-ops": { "title": "Data Ops" },
   "project-management": { "title": "Project Management" },
   "guides": { "title": "Guides" }
