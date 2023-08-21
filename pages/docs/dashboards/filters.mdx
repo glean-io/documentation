@@ -29,11 +29,14 @@ they are prioritized as such:
 
 ![Filter hierarchy](/dashboards/filter-hierarchy.png)
 
-Note that filter rules do not combine together - a more permissive filter will
-take precedence and override less permissive ones.
+Note that filter rules do not combine together - a filter with higher priority will completely override a filter with a lower priority. 
 
 ## Filter synchronization
 
-Dashboard filters are automatically synchronized based on the underlying column name of your attributes. For example, if you have two data models, each with an attribute based on a `customer_id` field, you only need to
-add one filter to the dashboard, and it will filter both data
-models by the provided value.
+Generally, dashboard filters are automatically synchronized based on the underlying column name of your attributes. For example, if you have two data models, each with an attribute based on a `customer_id` field, you only need to
+add one filter to the dashboard, and it will filter both data models by the provided value.
+
+You can turn off filter syncing by unchecking the "Apply to all models" option when configuring the filter. The filter will then be applied only to the model that the attribute comes from. 
+For attributes that come from models that are joined to other models in the dashboard, filter syncing will be off by default. 
+
+
