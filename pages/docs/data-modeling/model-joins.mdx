@@ -1,0 +1,85 @@
+import { Callout } from "nextra-theme-docs";
+
+# Model Joins
+
+In many cases, it can be useful to reuse data from one data model in others. This can be done in Glean by configuring joins across models. In essence, this is defining a primary-foreign key relationship across two Glean models.
+
+After configuring a join, you'll be able to use any attributes from the joined model in the base model. Note that joins only include the model **attributes**, not the model **metrics**.
+
+<Callout type="info">
+  Currently, Glean joins are always LEFT OUTER JOINS. Any unmatched rows from the joined model will simply have blank values for the attributes.
+</Callout>
+
+## Setting up
+
+There are two steps to setting up a join between two models:
+
+1. Configuring a primary key on the joined model (e.g. Customers)
+2. Configuring a foreign key on the base model (e.g. Sales)
+
+### 1. Configuring a primary key
+
+You first need to configure a primary key on the model you wish to join. Primary keys must meet the following conditions:
+
+- They must have a **string** or **numeric** type.
+- They must be **unique** in the underlying data table.
+
+You can configure a primary key using the following steps:
+
+1. Navigate to the model builder for the relevant model.
+
+2. Ensure you have defined an attribute for the primary key to be assigned to.
+
+3. Open the attribute editor and click `Set as primary key`.
+
+<img
+  src="/model_joins/pk.png"
+  alt="Setting a primary key"
+  style={{ padding: "20px" }}
+/>
+
+### 2. Configuring a foreign key
+
+Once you've set up a primary key on the model you wish to join, you can set up a foreign key on the base model. The foreign key's type must match the primary key.
+
+1. Navigate to the model builder for the base model.
+
+2. Ensure the attribute you wish to use for the join exists on the model.
+
+3. Click "Join models"
+
+<img
+  src="/model_joins/join_models.png"
+  alt="Join models button"
+  style={{ padding: "20px" }}
+/>
+
+4. Select an attribute on the base model that corresponds to the primary key you previously configured, and select the model to join in.
+
+5. Click "Join".
+
+At this point, you'll see the name of the joined model attached to the attribute you just configured:
+
+<img
+  src="/model_joins/fk_chip.png"
+  alt="Foreign key configured"
+  style={{ padding: "20px" }}
+/>
+
+This means the join is fully configured. Once you save your model, you can start using the joined attributes.
+
+## Using joined attributes
+
+You can use joined attributes anywhere you use regular model attributes! Throughout Glean, anywhere you configure filters, breakouts, axes, and more, you'll see the attributes from the base model as well.
+
+For example, they'll be added into the attribute tray alongside your pre-existing attributes:
+
+<img
+  src="/model_joins/attribute_tray.png"
+  alt="Attribute Tray"
+  style={{ padding: "20px" }}
+/>
+
+## Custom Metrics with joined data
+
+It's possible to utilize columns from joined models when defining custom metrics. See [Using Joined Columns in Metric SQL](./metrics#using-joined-columns-in-metric-sql) for more info.

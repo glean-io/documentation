@@ -41,3 +41,24 @@ To add a custom metric:
 1. Go to the [Add Data Model](/docs/data-modeling/add-data-model) workflow by creating a new data model or editing an existing model.
 2. Under the Metrics section click the `+ Add Custom Metric` button.
 3. Enter your aggregation and click the 🔄 button to test the SQL.
+
+### Using joined columns in metric SQL
+
+It's possible to write custom metric SQL that utilizes columns from joined models. However, if you write the following query:
+
+```
+count(DISTINCT id)
+```
+
+and the `id` column is not unique across joined models, the SQL won't be valid. This can solved by doing the following:
+
+1. Set an `alias` field on the model that owns the column you are trying to reference. This can be done via the YML Editor in the UI, or via Data Ops:
+```
+alias: customers_model
+```
+2. Use the alias you just set as a table name in the custom SQL you wrote:
+```
+count(DISTINCT customers_model.id)
+```
+
+This should ensure that the custom metric SQL is referencing the column you intended.
