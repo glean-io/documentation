@@ -9,7 +9,7 @@ article doesn't dedicate too much time to how to analyze retention curves since
 there is plenty of content dedicated to this out there.
 
 The approach is very similar to the general approach to data modeling: you'll
-prepare a set of metrics that define the percent of users that are still active
+prepare a set of [Measures](/docs/data-modeling/measures) that define the percent of users that are still active
 in a month and add attributes that help you understand the variation. See the
 article
 [Data Modeling Best Practices](../data-modeling/best-practices.mdx)
@@ -132,7 +132,7 @@ A few notes on the resulting columns:
      gear next to it.
    - Add `cohort_month_str`, `month_number` as attributes along with any
      experimental cohort attributes you prepared in your data.
-   - Add two columns as metrics:
+   - Add two columns as [Measures](/docs/data-modeling/measures):
 
      - **Unbounded Active Retention** - is defined as the `average` of column
        `unbounded_active`
