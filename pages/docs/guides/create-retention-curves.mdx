@@ -138,7 +138,7 @@ A few notes on the resulting columns:
        `unbounded_active`
      - **Active Retention** - is defined as the `average` of column `active`
      - **Active Users (Optional)** - if you want to create a retention pivot,
-       you should also add a metric for unique active users in a month:
+       you should also add a measure for unique active users in a month:
 
      ```sql
      COUNT(DISTINCT IF(active = 1, userid, null))
@@ -157,7 +157,7 @@ A few notes on the resulting columns:
 
 1. Change the chart type to a `line`
 2. Select `month_number` as the x-axis variable
-3. Select `Unbounded Active Retention` as your metric
+3. Select `Unbounded Active Retention` as your measure
 4. Select some `cohort_month_str` as breakouts to see how different cohort
    months retain users in your product. Alternatively, you can filter for a
    specific cohort month and breakout by an experimental variable
@@ -178,13 +178,13 @@ A few notes on the resulting columns:
   src="https://demo.glean.io/app/sv/07fdf78d-0f43-3320-b3dc-612a57fdfedc?viewMode=embed"
 />
 
-1. Make sure you add the Active Users metric specified above.
+1. Make sure you add the Active Users measure specified above.
 2. Select a `pivot table` as your visualization type from the chart dropdown on
    the top left.
 3. Select `cohort` as your rows.
 4. Select `month_number` as your columns.
 5. Click into the `control` tab on the right-hand side and make sure you sort
    rows by `cohort` descending and sort the columns by `month_number` ascending.
-6. As the metric, select `Active Users` as the calculation, select
+6. As the measure, select `Active Users` as the calculation, select
    `Percentage of Row Max` and finally as the Color scale, select
    `Percentage Color Scale`.

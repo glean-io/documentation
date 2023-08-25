@@ -8,15 +8,15 @@ You will setup and update measures from the [Add Data Model](/docs/data-modeling
 
 ## Types of measures
 
-| Name           | Input Column Type        | Description                                                                                                                |
-| -------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| row count      | No input column required | Count of rows.                                                                                                             |
-| custom metric  | No input column required | A SQL-based custom aggregation. See [Custom SQL Measures](/docs/data-modeling/measures#custom-sql-measures) for more details. |
-| count          | String or Numeric        | SQL `COUNT()`. Counts the number of non-null values in a column.                                                           |
-| count distinct | String or Numeric        | SQL `COUNT(DISTINCT)`. Counts the number of unique, non-null values in a column.                                           |
-| min            | Numeric                  | SQL `MIN()`. Finds the minimum value of a column.                                                                          |
-| max            | Numeric                  | SQL `MAX()`. Finds the maximum value of a column.                                                                          |
-| avg            | Numeric                  | SQL `AVG()`. Finds the arithmetic mean of a column.                                                                        |
+| Name           | Input Column Type        | Description                                                                                                                   |
+| -------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| row count      | No input column required | Count of rows.                                                                                                                |
+| custom measure | No input column required | A SQL-based custom aggregation. See [Custom SQL Measures](/docs/data-modeling/measures#custom-sql-measures) for more details. |
+| count          | String or Numeric        | SQL `COUNT()`. Counts the number of non-null values in a column.                                                              |
+| count distinct | String or Numeric        | SQL `COUNT(DISTINCT)`. Counts the number of unique, non-null values in a column.                                              |
+| min            | Numeric                  | SQL `MIN()`. Finds the minimum value of a column.                                                                             |
+| max            | Numeric                  | SQL `MAX()`. Finds the maximum value of a column.                                                                             |
+| avg            | Numeric                  | SQL `AVG()`. Finds the arithmetic mean of a column.                                                                           |
 
 ## The row count measure
 
@@ -42,7 +42,7 @@ To add a custom measure:
 2. Under the Measures section click the `+ Add Custom Measure` button.
 3. Enter your aggregation and click the 🔄 button to test the SQL.
 
-### Using joined columns in metric SQL
+### Using joined columns in measure SQL
 
 It's possible to write custom measure SQL that utilizes columns from joined models. However, if you write the following query:
 
@@ -53,10 +53,13 @@ count(DISTINCT id)
 and the `id` column is not unique across joined models, the SQL won't be valid. This can solved by doing the following:
 
 1. Set an `alias` field on the model that owns the column you are trying to reference. This can be done via the YML Editor in the UI, or via Data Ops:
+
 ```
 alias: customers_model
 ```
+
 2. Use the alias you just set as a table name in the custom SQL you wrote:
+
 ```
 count(DISTINCT customers_model.id)
 ```

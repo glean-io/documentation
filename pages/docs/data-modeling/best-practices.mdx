@@ -20,11 +20,11 @@ In data warehousing terms, this is often referred to as [the grain or granularit
 If it's hard to describe what each row represents, it's possible you're not picking a good concept to model and that exploring this model in Glean won't be very intuitive.
 
 <Callout type="info">
-  **Row count metric is required**— You can't remove the row count metric from a
-  data model in Glean (at least, not very easily). It's good practice to rename
-  the row count metric to describe what each row in the table represents (eg.
-  Calls). If each row really doesn't mean anything, you can rename in a way that
-  it won't accidentially get used " row count - dont use".
+  **Row count measure is required**— You can't remove the row count measure from
+  a data model in Glean (at least, not very easily). It's good practice to
+  rename the row count measure to describe what each row in the table represents
+  (eg. Calls). If each row really doesn't mean anything, you can rename in a way
+  that it won't accidentially get used " row count - dont use".
 </Callout>
 
 ## Denormalize your data
