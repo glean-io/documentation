@@ -7,47 +7,47 @@ In this documentation, we provide an overview of various chart types available i
 
 ## Bar, Area, Line Charts
 
-Bar, Area, and Line charts all work very similarly in Glean. These chart types are all designed for exploring time series metrics as defined in your [Data Models](/docs/data-modeling.mdx).
+Bar, Area, and Line charts all work very similarly in Glean. These chart types are all designed for exploring time series [Measures](/docs/data-modeling/measures) as defined in your [Data Models](/docs/data-modeling.mdx).
 
-<Iframe src="https://demo.glean.io/public/sv/28ea3240-accc-37ca-8ed3-3cf4717adbb3" />
+<Iframe src="https://demo.glean.io/public/sv/p2vCI-1xB3a8ATHV" />
 
-Bar charts represent data with rectangular bars. The height of the bars is proportional to the metric values they represent. Bar charts are a good default for a single metric time series. They clearly communicate granularity and it is easy to spot when there is missing data or the value is zero.
+Bar charts represent data with rectangular bars. The height of the bars is proportional to the measure values they represent. Bar charts are a good default for a single measure time series. They clearly communicate granularity and it is easy to spot when there is missing data or the value is zero.
 
-<Iframe src="https://demo.glean.io/public/sv/21d461ef-0d11-3671-9837-b43f3ec34993" />
+<Iframe src="https://demo.glean.io/public/sv/Pcq9sH2s9GsJvzDr" />
 
 Line charts represent data points connected by a line. They are useful for comparing series values directly against one another. e.g. comparing call volumes between departments.
 
-<Iframe src="https://demo.glean.io/public/sv/4d5d59eb-cc54-3371-9337-4d1a7b85b3c6" />
+<Iframe src="https://demo.glean.io/public/sv/MB2_I1v8juTfMjHy" />
 
 Area charts are similar to line charts, but fill the area under the lines. Area charts emphasize the total area taken up by a series. They work particularly well for charts showing proportional changes of a whole over time.
 
 ## Horizontal Bar Chart
 
-<Iframe src="https://demo.glean.io/public/sv/7d70b027-541a-3c26-8da7-7796c7001c5b" />
+<Iframe src="https://demo.glean.io/public/sv/OAcMRKe_sI_YYs6p" />
 
 Horizontal bar charts are extremely effective data visualizations for comparing total values across categories.
 
 <Callout type="info">
   Make sure to pick the right sorting for your viewers. Should you sort by the
-  the category names or the metric values? Our other chart types are naturally
+  the category names or the measure values? Our other chart types are naturally
   sorted by time, but here you need to be a bit more careful.
 </Callout>
 
 ## Table
 
-<Iframe src="https://demo.glean.io/public/sv/f981ef4d-828b-39bc-9bad-71197333949d" />
+<Iframe src="https://demo.glean.io/public/sv/E07ZDaoqUf_GeLTc" />
 
-Glean tables provide powerful options for visualization, formatting, and grouping. Tables are often the best option when comparing multiple metrics and breakouts at the same time.
+Glean tables provide powerful options for visualization, formatting, and grouping. Tables are often the best option when comparing multiple [Measures](/docs/data-modeling/measures) and breakouts at the same time.
 
 ## Pivot Table
 
-<Iframe src="https://demo.glean.io/public/sv/2f478a75-82a8-3a40-86d5-c80c2dc900fb" />
+<Iframe src="https://demo.glean.io/public/sv/HjGxTx8kUpgCO2Is" />
 
-Pivot tables allow you to take a table and break out columns. They enable you to quickly examine the effects of multiple dimensions of the data on a single metric.
+Pivot tables allow you to take a table and break out columns. They enable you to quickly examine the effects of multiple dimensions of the data on a single measure.
 
 ## Source Data Table
 
-<Iframe src="https://demo.glean.io/public/sv/3d48ebac-1b5e-3029-ad24-88c908a41f78" />
+<Iframe src="https://demo.glean.io/public/sv/2vXP_KrPHNLoRh_j" />
 
 Source data tables show the underlying data from your data warehouse. They provide raw data that can be used for further analysis or exported to other tools.
 

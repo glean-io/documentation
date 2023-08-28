@@ -34,7 +34,7 @@ Breaking out into multiple charts allows you to create a trellis chart, a series
 
 A trellis chart makes it easy to compare different slices of your data side-by-side, which can be easier to interpret than a chart like a stacked bar chart.
 
-Trellis charts can be particularly effective when combined with a color breakout or multiple metrics.
+Trellis charts can be particularly effective when combined with a color breakout or multiple [Measures](/docs/data-modeling/measures).
 
 ![Gif](/visualizing_data/breakout-trellis_shfum6.gif)
 
@@ -46,13 +46,13 @@ Sometimes you might want to hide the `Other` category to make the comparison bet
 
 ## Dynamic breakouts
 
-Breakouts are helpful for understanding which items in an attribute are the most significant contributors to a metric, and very often you'll want to track changes in this attribute as data changes or filters are applied. To do this, turn on dynamic breakouts in the Control Panel under `Breakout`.
+Breakouts are helpful for understanding which items in an attribute are the most significant contributors to a measure, and very often you'll want to track changes in this attribute as data changes or filters are applied. To do this, turn on dynamic breakouts in the Control Panel under `Breakout`.
 
 ![turning on dynamic breakouts for an attribute](/visualizing_data/dynamic-breakout-control-panel.gif)
 
 Dynamic breakouts update themselves depending on a rule you define:
 
-1. Sorting by the metric: if you want to breakout by the top six customers by revenue, breakout `customers` then sort by `revenue` descending.
+1. Sorting by the measure: if you want to breakout by the top six customers by revenue, breakout `customers` then sort by `revenue` descending.
 2. Sorting by the attribute's values: if you want to breakout by the last 6 months of `start_date`, breakout `start_date` then sort by `start_date` descending.
 
 You can also easily change the number of items you want in your breakout by changing `Limit`. Similarily, create a dynamic trellis by toggling the dynamic breakout option for your trellised attribute.

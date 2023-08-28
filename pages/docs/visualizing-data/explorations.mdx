@@ -6,39 +6,30 @@ Saved Explorations and Data Models are often starting points for further explora
 
 ## Starting and resuming an exploration
 
-Whenever you begin making changes to a data model in the `Data Explorer`, Glean will track your changes and create unique URLs for each step in your exploration.
+![](/visualizing_data/explore_exploring.jpg)
 
-Click the `Discard exploration` button to reset back to the data model's default configuration at any time. Glean will save your place for each resource for you to return to later.
+Whenever you begin making changes to a resource in the `Explorer`, Glean will track your changes and give them unique URLs.
 
-If you've explored a data model before, can you resume your previous exploration by clicking the `Resume exploration` button.
+Click the `X` in the `Exploring` chip to reset back to the resource's default configuration at any time. Glean will save your place for each resource for you to return to later.
 
+If you've explored a resource before, you will see an option to resume your last `Exploration` for that resource.
+
+![](/visualizing_data/explore_resume.jpg)
 
 ## Sharing an exploration
 
-In the `Data Explorer`, you can always click the `Copy link` button to copy the URL for your current exploration to the clipboard. You can also simply copy the URL from the address bar of your browser.
+![](/visualizing_data/explore_share.jpg)
 
-When someone else accesses your link, they will be brought to the resource with your `Exploration` applied. They can then review the exploration or start their own exploration using your shared state as a starting point.
+In the `Explorer`, you can always click the `Exploring` chip to copy the URL for your current exploration to the clipboard. You can also simply copy the URL from the address bar of your browser.
+
+When someone else accesses your link, they will be brought to the resource with your `Exploration` applied. They will see a color header and the name of the person who shared their `Exploration`.
+
+![screenshot of glean when viewing another user's exploration](/visualizing_data/explore_view.jpg)
 
 <Callout type="warning">
   While an `Exploration` link contains configurations such as
-  [Breakouts](/docs/visualizing-data/Breakouts) and
-  [Filters](/docs/visualizing-data/Filter), it does not freeze and preserve the
+  [Breakouts](/visualizing-data/Breakouts) and
+  [Filters](/visualizing-data/Filter), it does not freeze and preserve the
   underlying data. If someone accesses an `Exploration` and the underlying data
   has changed, they might not see what was intended.
 </Callout>
-
-## Creating a Saved exploration
-
-Sometimes you may create an exploration with an insight or a configuration that you want to name and share with others. You can save your exploration by clicking the `Save` button.
-
-When you save an exploration, Glean will create a new saved exploration resource that contains the current state of your exploration.
-
-When other users in your project are exploring a data model, they can see all saved explorations matching the current data model in the `Explorations` tab of the [Data tray](/docs/visualizing-data/data-tray). Here they can start their own exploration using any of the saved explorations as a starting point.
-
-## Viewing a Saved Exploration
-
-Aside from starting a new exploration from a saved exploration, you can view the saved exploration by clicking the more menu for a particular saved exploration in the [Data tray](/docs/visualizing-data/data-tray) and selecting `View saved exploration`.
-
-This will provide a read-only view of the saved exploration ideal for sharing with others. This view of the saved exploration contains a more pronounced title and description if one has been provided.
-
-From this view of the saved exploration, users can begin a new exploration from the saved exploration by clicking the `Explore from here` button.
