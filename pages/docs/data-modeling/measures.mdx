@@ -1,0 +1,67 @@
+# Calculating Measures
+
+Measures are measurements that can go up and down over time.
+Each measure should map to a measurement of a process or workflow in your organization.
+Counts of events, revenues and cycle times are good examples of measures you may want to add to your data model.
+
+You will setup and update measures from the [Add Data Model](/docs/data-modeling/add-data-model) workflow.
+
+## Types of measures
+
+| Name           | Input Column Type        | Description                                                                                                                   |
+| -------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| row count      | No input column required | Count of rows.                                                                                                                |
+| custom measure | No input column required | A SQL-based custom aggregation. See [Custom SQL Measures](/docs/data-modeling/measures#custom-sql-measures) for more details. |
+| count          | String or Numeric        | SQL `COUNT()`. Counts the number of non-null values in a column.                                                              |
+| count distinct | String or Numeric        | SQL `COUNT(DISTINCT)`. Counts the number of unique, non-null values in a column.                                              |
+| min            | Numeric                  | SQL `MIN()`. Finds the minimum value of a column.                                                                             |
+| max            | Numeric                  | SQL `MAX()`. Finds the maximum value of a column.                                                                             |
+| avg            | Numeric                  | SQL `AVG()`. Finds the arithmetic mean of a column.                                                                           |
+
+## The row count measure
+
+The row count measure is added by default to a data model and can't be removed. This is intentional - see the best practices for defining this measure in the [Data Modeling Best Practices](/docs/data-modeling/best-practices).
+
+## Column aggregations
+
+The simplest type of measure. See table above for which functions you can run on specific measures.
+
+To add a column aggregating measure:
+
+1. Go to the [Add Data Model](/docs/data-modeling/add-data-model) workflow by creating a new data model or editing an existing model.
+2. In the list of fields, click `Add measure` next to the name of the field you'd like to aggregate.
+3. Click on the new item in the measure list to expand the and select the aggregation type.
+
+## Custom SQL measures
+
+Custom SQL measures allow you to have more involved custom aggregations in Glean like weighted averages or proportions and other formulas. You can define a custom measure as any [aggregating function](https://www.datacamp.com/community/tutorials/aggregate-functions-sql) that results in a numeric value.
+
+To add a custom measure:
+
+1. Go to the [Add Data Model](/docs/data-modeling/add-data-model) workflow by creating a new data model or editing an existing model.
+2. Under the Measures section click the `+ Add Custom Measure` button.
+3. Enter your aggregation and click the 🔄 button to test the SQL.
+
+### Using joined columns in measure SQL
+
+It's possible to write custom measure SQL that utilizes columns from joined models. However, if you write the following query:
+
+```
+count(DISTINCT id)
+```
+
+and the `id` column is not unique across joined models, the SQL won't be valid. This can solved by doing the following:
+
+1. Set an `alias` field on the model that owns the column you are trying to reference. This can be done via the YML Editor in the UI, or via Data Ops:
+
+```
+alias: customers_model
+```
+
+2. Use the alias you just set as a table name in the custom SQL you wrote:
+
+```
+count(DISTINCT customers_model.id)
+```
+
+This should ensure that the custom measure SQL is referencing the column you intended.

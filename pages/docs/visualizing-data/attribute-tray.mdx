@@ -4,11 +4,11 @@ import { Callout } from "nextra-theme-docs";
 
 The attribute tray is the primary control for your chart data.
 
-By default, there is one tile for each attribute in your data model in your attribute tray. You can scroll left and right to reveal all of the attributes. The attribute tray immediately allows you to see the metric values for your data as well as filter and breakout data. There are a few actions which every attribute tile allows you to do:
+By default, there is one tile for each attribute in your data model in your attribute tray. You can scroll left and right to reveal all of the attributes. The attribute tray immediately allows you to see the measure values for your data as well as filter and breakout data. There are a few actions which every attribute tile allows you to do:
 
 1. Breakout an attribute as a series.
 2. Filter for specific attribute values.
-3. See metric values for each item immediately.
+3. See measure values for each item immediately.
 
 ## Hiding and unhiding attribute tiles
 
@@ -25,7 +25,7 @@ The default state for an attribute tile is this filtering mode. Checkboxes next 
 
 1. Hover over an attribute value.
 2. To exclude the value, click it.
-3. To include just that value, click the icon at the base of the value's metric bar.
+3. To include just that value, click the icon at the base of the value's measure bar.
 
 ### Include vs. exclude filter
 
@@ -48,7 +48,7 @@ Breakouts sets are pinned. They do not update when filters or the underlying dat
 
 ## Sorting attributes
 
-By default, string attributes are sorted by a metric in descending order. To change the order, click the attribute tile's title, then click the sorting icon to see sorting options.
+By default, string attributes are sorted by a measure in descending order. To change the order, click the attribute tile's title, then click the sorting icon to see sorting options.
 
 Breakouts can be reordered manually by dragging the attribute items.
 
@@ -87,7 +87,7 @@ Array attributes are a powerful feature that allow you to filter and group on el
 
 ### Filtering and breaking out with arrays
 
-Filters and breakouts are applied to individual items within the arrays in your dataset. For example, if your customer contact activity dataset contains arrays representing campaigns, you can use filters to visualize contact activity for a specific campaign only. By breaking out the data, you can examine the distribution of activity across campaigns. Be aware that when using array attributes, Glean unnests the data, which may impact metrics, depending on your specific dataset.
+Filters and breakouts are applied to individual items within the arrays in your dataset. For example, if your customer contact activity dataset contains arrays representing campaigns, you can use filters to visualize contact activity for a specific campaign only. By breaking out the data, you can examine the distribution of activity across campaigns. Be aware that when using array attributes, Glean unnests the data, which may impact measures, depending on your specific dataset.
 
 For more detailed information about filtering and breakouts, please refer to [Filter](/docs/visualizing-data/filter) and [Breakout](/docs/visualizing-data/breakout) pages.
 

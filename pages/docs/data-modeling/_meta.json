@@ -2,7 +2,7 @@
   "add-data-model": {},
   "description-syncing": {},
   "model-joins": {},
-  "metrics": {},
+  "measures": {},
   "best-practices": {},
   "query-data-files": { "title": "Uploading Files" },
   "caching": {}

@@ -4,10 +4,11 @@ import { Callout } from "nextra-theme-docs";
 
 In many cases, it can be useful to reuse data from one data model in others. This can be done in Glean by configuring joins across models. In essence, this is defining a primary-foreign key relationship across two Glean models.
 
-After configuring a join, you'll be able to use any attributes from the joined model in the base model. Note that joins only include the model **attributes**, not the model **metrics**.
+After configuring a join, you'll be able to use any attributes from the joined model in the base model. Note that joins only include the model **attributes**, not the model **measures**.
 
 <Callout type="info">
-  Currently, Glean joins are always LEFT OUTER JOINS. Any unmatched rows from the joined model will simply have blank values for the attributes.
+  Currently, Glean joins are always LEFT OUTER JOINS. Any unmatched rows from
+  the joined model will simply have blank values for the attributes.
 </Callout>
 
 ## Setting up
@@ -80,6 +81,6 @@ For example, they'll be added into the attribute tray alongside your pre-existin
   style={{ padding: "20px" }}
 />
 
-## Custom Metrics with joined data
+## Custom Measures with joined data
 
-It's possible to utilize columns from joined models when defining custom metrics. See [Using Joined Columns in Metric SQL](./metrics#using-joined-columns-in-metric-sql) for more info.
+It's possible to utilize columns from joined models when defining custom measures. See [Using Joined Columns in Measure SQL](./measures#using-joined-columns-in-measure-sql) for more info.
