@@ -106,10 +106,9 @@ export default {
   ),
   logoLink: "https://glean.io",
   useNextSeoProps: () => ({ titleTemplate: "Glean - %s" }),
-  docsRepositoryBase:
-    "https://github.com/glean-io/documentation/tree/main/",
+  docsRepositoryBase: "https://github.com/glean-io/documentation/tree/main/",
   darkMode: false,
-  nextThemes: { defaultTheme: 'light' },
+  nextThemes: { defaultTheme: "light" },
   primaryHue: 38,
   sidebar: { defaultMenuCollapseLevel: 2, toggleButton: true },
   head: function useHead() {
@@ -154,12 +153,13 @@ export default {
       <script> {analytics()} </script>;
     },
   },
-  //banner: {
-  //key: '2.0-release',
-  //text: (
-  //<a href="https://glean.io" target="_blank" rel="noreferrer">
-  //🎉 Glean is released. Read more →
-  //</a>
-  //)
-  //},
+  banner: {
+    key: "hashboard-release",
+    text: (
+      <a href="https://docs.hashboard.com">
+        Glean.io is now Hashboard! This documentation page is deprecated, click
+        here for the current version →
+      </a>
+    ),
+  },
 };
