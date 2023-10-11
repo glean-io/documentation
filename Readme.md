@@ -1,3 +1,6 @@
+## This repo is no longer used. 
+Documentation now lives in the [hashboard-hq](https://github.com/hashboard-hq/documentation) repo! 
+
 # Glean documentation
 
 User-facing documentation for [Glean](https://glean.io) built with nextra / nextjs.
